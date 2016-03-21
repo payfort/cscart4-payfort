@@ -1,0 +1,78 @@
+msgid ""
+msgstr "Project-Id-Version: tygh"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: el_GR\n"
+
+msgctxt "Addons::name::payfort_fort"
+msgid "PayFort payments"
+msgstr "PayFort payments"
+
+msgctxt "Addons::description::payfort_fort"
+msgid "Lets you accept payments via PayFort Credit /Debit Cards, Sadad and Naps"
+msgstr "Lets you accept payments via PayFort Credit /Debit Cards, Sadad and Naps"
+
+msgctxt "Languages::merchant_identifier"
+msgid "Merchant Identifier"
+msgstr "Merchant Identifier"
+
+msgctxt "Languages::access_code"
+msgid "Access Code"
+msgstr "Access Code"
+
+msgctxt "Languages::command"
+msgid "Command"
+msgstr "Command"
+
+msgctxt "Languages::hash_algorithm"
+msgid "Hash Algorithm"
+msgstr "Hash Algorithm"
+
+msgctxt "Languages::request_sah_phrase"
+msgid "Request SHA Phrase"
+msgstr "Request SHA Phrase"
+
+msgctxt "Languages::response_sah_phrase"
+msgid "Response SHA Phrase"
+msgstr "Response SHA Phrase"
+
+msgctxt "Languages::mode"
+msgid "Mode"
+msgstr "Mode"
+
+msgctxt "Languages::host_to_host_url"
+msgid "Host to Host URL"
+msgstr "Host to Host URL"
+
+msgctxt "Languages::purchase"
+msgid "PURCHASE"
+msgstr "PURCHASE"
+
+msgctxt "Languages::authorization"
+msgid "AUTHORIZATION"
+msgstr "AUTHORIZATION"
+
+msgctxt "Languages::sandbox"
+msgid "sandbox"
+msgstr "sandbox"
+
+msgctxt "Languages::live"
+msgid "live"
+msgstr "live"
+
+msgctxt "Languages::store_language"
+msgid "Store Language"
+msgstr "Store Language"
+
+msgctxt "Languages::integration_type"
+msgid "Integration Type"
+msgstr "Integration Type"
+
+msgctxt "Languages::redirection"
+msgid "Redirection"
+msgstr "Redirection"
+
+msgctxt "Languages::merchant_page"
+msgid "Merchant Page"
+msgstr "Merchant Page"
+
