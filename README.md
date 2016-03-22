@@ -1,4 +1,4 @@
-# PayFort FORT plugin for CS-Cart (4.0.0)+
+# PayFort FORT plugin for CS-Cart (4.X.X)
 
 Please set the following values in the Payfort merchant settings:
 
