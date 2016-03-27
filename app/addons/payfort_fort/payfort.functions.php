@@ -115,9 +115,9 @@ function fn_payfort_fort_process_response($payment_method) {
         }
         else{
             $pp_response['order_status'] = 'P';
+            $pp_response["transaction_id"] = $params['fort_id'];
         }
         fn_finish_payment($order_id, $pp_response);
-        fn_order_placement_routines('route', $order_info['order_id']);
         
         $return_url = fn_url("payment_notification.notify?payment={$payment_method}&order_id={$order_id}", AREA, 'current');
         $integration_type = isset($processor_data['processor_params']['integration_type']) ? $processor_data['processor_params']['integration_type'] : '';
