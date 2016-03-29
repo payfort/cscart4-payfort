@@ -274,12 +274,14 @@ function fn_payfort_fort_merchant_page_notify_fort($order_id, $order_info, $fort
         'amount'                => fn_payfort_fort_convert_fort_amount($order_info['total'], $payfort_currency),
         'currency'              => strtoupper($payfort_currency),
         'customer_email'        => $order_info['email'],
-        'customer_name'         => trim($order_info['b_firstname'].' '.$order_info['b_lastname']),
         'token_name'            => $fort_params['token_name'],
         'language'              => fn_payfort_fort_get_language(),
         'return_url'            => $return_url,
     );
-    
+    $customer_name = trim($order_info['b_firstname'].' '.$order_info['b_lastname']);
+    if(!empty($customer_name)) {
+        $postData['customer_name'] = $customer_name;
+    }
     //calculate request signature
     $signature = fn_payfort_fort_calculate_signature($postData, 'request');
     $postData['signature'] = $signature;
