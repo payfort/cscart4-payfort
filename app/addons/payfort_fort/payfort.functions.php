@@ -378,11 +378,34 @@ function fn_payfort_fort_convert_fort_amount($amount, $currency_code)
     
     $arr_currency_data  = fn_get_currencies_list(array('currency_code' => $currency_code));
     $currency_data      = $arr_currency_data[$currency_code];
-    $decimal_points     = $currency_data['decimals'];
+    //$decimal_points     = $currency_data['decimals'];
+    $decimal_points     = fn_payfort_fort_get_currency_decimal_points($currency_code);
     
     $new_amount = $total * (pow(10, $decimal_points));
     //$new_amount = round($total) * (pow(10, $decimal_points));
     return $new_amount;
+}
+
+/**
+ * 
+ * @param string $currency
+ * @param integer 
+ */
+function fn_payfort_fort_get_currency_decimal_points($currency) {
+    $decimalPoint  = 2;
+    $arrCurrencies = array(
+        'JOD' => 3,
+        'KWD' => 3,
+        'OMR' => 3,
+        'TND' => 3,
+        'BHD' => 3,
+        'LYD' => 3,
+        'IQD' => 3,
+    );
+    if (isset($arrCurrencies[$currency])) {
+        $decimalPoint = $arrCurrencies[$currency];
+    }
+    return $decimalPoint;
 }
 
 function fn_payfort_fort_get_host_to_host_url()
