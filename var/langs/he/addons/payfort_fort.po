@@ -76,3 +76,7 @@ msgctxt "Languages::merchant_page"
 msgid "Merchant Page"
 msgstr "Merchant Page"
 
+msgctxt "Languages::text_payfort_fort_fill_general_settings_message"
+msgid "<b>Note:</b> Don't forget to fill PayFort settings data in (Add-ons > Manange add-ons > PayFort payments)"
+msgstr "<b>Note:</b> Don't forget to fill PayFort settings data in (Add-ons > Manange add-ons > PayFort payments)"
+

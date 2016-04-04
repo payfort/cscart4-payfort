@@ -381,7 +381,8 @@ function fn_payfort_fort_convert_fort_amount($amount, $currency_code)
     //$decimal_points     = $currency_data['decimals'];
     $decimal_points     = fn_payfort_fort_get_currency_decimal_points($currency_code);
     
-    $new_amount = $total * (pow(10, $decimal_points));
+    $new_amount = round($total, $decimal_points) * (pow(10, $decimal_points));
+    
     //$new_amount = round($total) * (pow(10, $decimal_points));
     return $new_amount;
 }

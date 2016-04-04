@@ -35,9 +35,9 @@ function fn_get_payfort_fort_settings($lang_code = DESCR_SL)
     return $payfort_fort_settings['general'];
 }
 
-function fn_payfort_fort_pre_place_order(&$cart, &$allow, &$product_groups) {
-    $cart['rewrite_order_id'] = array();
-}
+//function fn_payfort_fort_pre_place_order(&$cart, &$allow, &$product_groups) {
+//    $cart['rewrite_order_id'] = array();
+//}
 
 //function fn_validate_paypal_order_info($data, $order_info)
 //{

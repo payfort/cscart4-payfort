@@ -1,3 +1,5 @@
+{include file="addons/payfort_fort/views/payments/components/payment_method_header_note.tpl"}
+<hr />
 <div class="control-group">
     <label class="control-label" for="integration_type">{__("integration_type")}:</label>
     <div class="controls">
