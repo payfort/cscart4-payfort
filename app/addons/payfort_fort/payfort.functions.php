@@ -238,6 +238,7 @@ function fn_payfort_fort_process_merchant_page_response($payment_method) {
         }
         else{
             $pp_response['order_status'] = 'P';
+            $pp_response["transaction_id"] = $params['fort_id'];
         }
         fn_finish_payment($order_id, $pp_response);
 
@@ -435,4 +436,21 @@ function fn_payfort_fort_get_language()
         $language = 'en';
     }
     return $language;
+}
+
+function fn_payfort_fort_delete_old_order($payment_id) {
+    $payment_method_data = fn_get_payment_method_data($payment_id);
+        $processor_script = db_get_field("SELECT processor_script FROM ?:payment_processors WHERE processor_id = ?i", $payment_method_data['processor_id']);
+        if(in_array($processor_script, array('payfort_fort_cc.php', 'payfort_fort_sadad.php', 'payfort_fort_naps.php'))) {
+            $cart = & $_SESSION['cart'];
+            if(!empty($cart['failed_order_id']) || !empty($cart['processed_order_id'])) {
+                $_order_ids = !empty($cart['failed_order_id']) ? $cart['failed_order_id'] : $cart['processed_order_id'];
+
+                foreach ($_order_ids as $_order_id) {
+                        fn_delete_order($_order_id);
+                }
+                $cart['rewrite_order_id'] = array();
+                unset($cart['failed_order_id'], $cart['processed_order_id']);
+            }
+        }
 }

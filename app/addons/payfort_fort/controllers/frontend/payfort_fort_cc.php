@@ -16,6 +16,15 @@ if ($mode == 'get_merchant_page_data') {
     );
     
     $payment_id = (empty($_REQUEST['payment_id']) ? $cart['payment_id'] : $_REQUEST['payment_id']);
+    fn_payfort_fort_delete_old_order($payment_id);
+    $cart = empty($_SESSION['cart']) ? array() : $_SESSION['cart'];
+    if(empty($cart)) {
+        echo json_encode(array('error' => true));
+        exit;
+    }
+    $cart['payment_info'] = array(
+        
+    );
     
     $processor_data = fn_get_payment_method_data($payment_id);
     
