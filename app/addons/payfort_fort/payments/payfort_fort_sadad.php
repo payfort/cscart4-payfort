@@ -12,15 +12,25 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 // Return from payfort website
 if (defined('PAYMENT_NOTIFICATION')) {
-    
+    $payment_method = PAYFORT_FORT_PAYMENT_METHOD_SADAD;
+    $response_mode = 'online';
+    $integration_type = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
     if ($mode == 'return') {
-        fn_payfort_fort_process_response('payfort_fort_sadad');        
+        $response_mode = 'offline';
+    }
+    
+    if($mode == 'return' || $mode == 'responseOnline') {
+        fn_payfort_fort_process_response($payment_method, $response_mode, $integration_type);
     }
     elseif ($mode == 'notify') {
-        fn_order_placement_routines('route', $_REQUEST['order_id'], false);
+        $order_id = $_REQUEST['order_id'];
+        if (empty($auth['user_id']) && !empty($order_id)) {
+            $auth['order_ids'][] = $order_id;
+        }
+        fn_order_placement_routines('route', $order_id, false);
     }
     
 } else {
-    fn_payfort_fort_process_request($order_id, $order_info, 'payfort_fort_sadad');
+    fn_payfort_fort_process_request($order_id, $order_info, PAYFORT_FORT_PAYMENT_METHOD_SADAD);
 }
 exit;

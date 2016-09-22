@@ -1,9 +1,12 @@
 <?php
+
 use Tygh\Registry;
 use Tygh\Settings;
 use Tygh\Http;
 
-if (!defined('BOOTSTRAP')) { die('Access denied'); }
+if (!defined('BOOTSTRAP')) {
+    die('Access denied');
+}
 
 require_once dirname(__FILE__) . "/payfort.functions.php";
 
@@ -19,7 +22,7 @@ function fn_update_payfort_fort_settings($settings)
     if (isset($settings['payment_settings'])) {
         $settings['payment_settings'] = serialize($settings['payment_settings']);
     }
-    
+
     foreach ($settings as $setting_name => $setting_value) {
         Settings::instance()->updateValue($setting_name, $setting_value);
     }
@@ -31,8 +34,35 @@ function fn_get_payfort_fort_settings($lang_code = DESCR_SL)
     if (!empty($payfort_fort_settings['general']['payment_settings'])) {
         $payfort_fort_settings['general']['payment_settings'] = unserialize($payfort_fort_settings['general']['payment_settings']);
     }
-    
+
     return $payfort_fort_settings['general'];
+}
+
+function fn_payfort_fort_get_payments_post(&$params, &$payments)
+{
+    $area = isset($params['area']) ? $params['area'] : AREA;
+    if ($area == 'C') {
+
+        foreach ($payments as $k => $payment) {
+            $processor_data = fn_get_processor_data($payment['payment_id']);
+            if (isset($processor_data['addon'])) {
+                if ($processor_data['addon'] == 'payfort_fort_sadad' || $processor_data['addon'] == 'payfort_fort_naps') {
+                    if ($processor_data['addon'] == 'payfort_fort_sadad') {
+                        $allowedCurrency = 'SAR';
+                    }
+                    if ($processor_data['addon'] == 'payfort_fort_naps') {
+                        $allowedCurrency = 'QAR';
+                    }
+                    $pfHelper = Payfort_Fort_Helper::getInstance();
+                    $currency = $pfHelper->getFortCurrency(CART_PRIMARY_CURRENCY, CART_SECONDARY_CURRENCY);
+
+                    if ($currency != $allowedCurrency) {
+                        unset($payments[$k]);
+                    }
+                }
+            }
+        }
+    }
 }
 
 //function fn_payfort_fort_pre_place_order(&$cart, &$allow, &$product_groups) {

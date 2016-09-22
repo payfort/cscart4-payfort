@@ -80,3 +80,51 @@ msgctxt "Languages::text_payfort_fort_fill_general_settings_message"
 msgid "<b>Note:</b> Don't forget to fill PayFort settings data in (Add-ons > Manange add-ons > PayFort payments)"
 msgstr "<b>Note:</b> Don't forget to fill PayFort settings data in (Add-ons > Manange add-ons > PayFort payments)"
 
+msgctxt "Languages::gateway_currency"
+msgid "Gateway Currency"
+msgstr "Gateway Currency"
+
+msgctxt "Languages::base_currency"
+msgid "Base Currency"
+msgstr "Base Currency"
+
+msgctxt "Languages::front_currency"
+msgid "Front Currency"
+msgstr "Front Currency"
+
+msgctxt "Languages::ttc_gateway_currency"
+msgid "The Currency should be sent to payment gateway."
+msgstr "The Currency should be sent to payment gateway."
+
+msgctxt "Languages::error_invalid_signature"
+msgid "Invalid response signature."
+msgstr "Invalid response signature."
+
+msgctxt "Languages::error_transaction_error_1"
+msgid "An error occurred while making the transaction. Please try again"
+msgstr "An error occurred while making the transaction. Please try again"
+
+msgctxt "Languages::error_transaction_error_2"
+msgid "An error occurred while making the transaction. Please try again. (Error message: %s)"
+msgstr "An error occurred while making the transaction. Please try again. (Error message: %s)"
+
+msgctxt "Languages::error_response_unknown"
+msgid "Response Unknown"
+msgstr "Response Unknown"
+
+msgctxt "Languages::text_payment_canceled"
+msgid "You have canceled the payment, please try again."
+msgstr "You have canceled the payment, please try again."
+
+msgctxt "Languages::merchant_page2"
+msgid "Merchant Page 2.0"
+msgstr "Merchant Page 2.0"
+
+msgctxt "Languages::order_placement"
+msgid "Order Placement"
+msgstr "Order Placement"
+
+msgctxt "Languages::on_success"
+msgid "On Success"
+msgstr "On Success"
+
