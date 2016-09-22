@@ -67,6 +67,24 @@
         </select>
     </div>
 </div>
+<div class="control-group">
+    <label class="control-label" for="gateway_currency">{__("gateway_currency")}:</label>
+    <div class="controls">
+        <select name="payfort_fort_settings[payment_settings][gateway_currency]" id="gateway_currency">
+            <option value="base"{if $payfort_fort_settings.payment_settings.gateway_currency eq "base"} selected="selected"{/if}>{__("base_currency")}</option>
+            <option value="front"{if $payfort_fort_settings.payment_settings.gateway_currency eq "front"} selected="selected"{/if}>{__("front_currency")}</option>
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="order_placement">{__("order_placement")}:</label>
+    <div class="controls">
+        <select name="payfort_fort_settings[payment_settings][order_placement]" id="order_placement">
+            <option value="all"{if $payfort_fort_settings.payment_settings.order_placement eq "all"} selected="selected"{/if}>{__("always")}</option>
+            <option value="success"{if $payfort_fort_settings.payment_settings.order_placement eq "success"} selected="selected"{/if}>{__("on_success")}</option>
+        </select>
+    </div>
+</div>
 {assign var="payfort_fort_host_url" value=fn_payfort_fort_get_host_to_host_url()}
 <div class="control-group">
     <strong class="control-label">{__('host_to_host_url')}:</strong>

@@ -23,10 +23,14 @@ iframe#payfort_merchant_page {
     margin:1em auto;
 }
 .pf-iframe-close{
-    font-size: 1.7em !important;
+    font-size: 1.7em;
     color: #fff;
     cursor: pointer
 }
 .pf-iframe-spin{
+    font-size: 3em;
+    color: #fff;
     display: block;
+    margin: 1em auto;
+    cursor: default
 }
