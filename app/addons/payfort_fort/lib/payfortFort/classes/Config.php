@@ -125,7 +125,7 @@ class Payfort_Fort_Config
 
     public function isSandboxMode()
     {
-        if ($this->sandboxMode) {
+        if ($this->sandboxMode == 'sandbox') {
             return true;
         }
         return false;
