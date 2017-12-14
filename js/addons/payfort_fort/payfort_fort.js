@@ -38,7 +38,7 @@ var payfortFortMerchantPage = (function () {
             if($("#payfort_merchant_page").size()) {
                 $( "#payfort_merchant_page" ).remove();
             }
-            $('<iframe  name="payfort_merchant_page" id="payfort_merchant_page"height="550px" frameborder="0" scrolling="no" onload="payfortFortMerchantPage.iframeLoaded(this)" style="display:none"></iframe>').appendTo('#pf_iframe_content');
+            $('<iframe  name="payfort_merchant_page" id="payfort_merchant_page"height="650px" frameborder="0" scrolling="no" onload="payfortFortMerchantPage.iframeLoaded(this)" style="display:none"></iframe>').appendTo('#pf_iframe_content');
             $('.pf-iframe-spin').show();
             $('.pf-iframe-close').hide();
             $( "#payfort_merchant_page" ).attr("src", gatewayUrl);

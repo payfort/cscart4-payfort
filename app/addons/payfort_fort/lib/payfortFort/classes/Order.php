@@ -88,6 +88,11 @@ class Payfort_Fort_Order
     {
         return isset($this->order['payment_method']['processor_params']['integration_type']) ? $this->order['payment_method']['processor_params']['integration_type'] : PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
     }
+    
+    public function getInstallmentsIntegrationType()
+    {
+        return isset($this->order['payment_method']['processor_params']['integration_type']) ? $this->order['payment_method']['processor_params']['integration_type'] : PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
+    }
 
     public function getStatusId()
     {
