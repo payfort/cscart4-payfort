@@ -18,6 +18,9 @@ if (!empty($_REQUEST['payment'])) {
             elseif($processor_script == 'payfort_fort_sadad.php') {
                 $_REQUEST['payment'] = 'payfort_fort_sadad';
             }
+            elseif($processor_script == 'payfort_fort_installments.php') {
+                $_REQUEST['payment'] = 'payfort_fort_installments';
+            }
             elseif($processor_script == 'payfort_fort_naps.php') {
                 $_REQUEST['payment'] = 'payfort_fort_naps';
             }
