@@ -14,6 +14,9 @@ function fn_payfort_fort_process_request($order_id, $order_info, $payment_method
     $integration_type = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
     if ($payment_method == PAYFORT_FORT_PAYMENT_METHOD_CC) {
         $integration_type = $pfOrder->getIntegrationType();
+    } else if($payment_method == PAYFORT_FORT_PAYMENT_METHOD_INSTALLMENTS){
+        $integration_type = $pfOrder->getInstallmentsIntegrationType();
+        
     }
 //    if ($order_info['status'] == STATUS_INCOMPLETED_ORDER) {
 //        fn_change_order_status($order_id, 'O', '', false);
@@ -66,7 +69,7 @@ function fn_payfort_fort_delete_old_order($payment_id)
 {
     $payment_method_data = fn_get_payment_method_data($payment_id);
     $processor_script    = db_get_field("SELECT processor_script FROM ?:payment_processors WHERE processor_id = ?i", $payment_method_data['processor_id']);
-    if (in_array($processor_script, array('payfort_fort_cc.php', 'payfort_fort_sadad.php', 'payfort_fort_naps.php'))) {
+    if (in_array($processor_script, array('payfort_fort_cc.php', 'payfort_fort_sadad.php', 'payfort_fort_naps.php', 'payfort_fort_installments.php'))) {
         $cart = & $_SESSION['cart'];
         if (!empty($cart['failed_order_id']) || !empty($cart['processed_order_id'])) {
             $_order_ids               = !empty($cart['failed_order_id']) ? $cart['failed_order_id'] : $cart['processed_order_id'];
