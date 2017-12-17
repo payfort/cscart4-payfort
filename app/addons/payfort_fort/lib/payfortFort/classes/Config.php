@@ -6,6 +6,7 @@ define('PAYFORT_FORT_INTEGRATION_TYPE_MERCAHNT_PAGE2', 'merchantPage2');
 define('PAYFORT_FORT_PAYMENT_METHOD_CC', 'payfort_fort_cc');
 define('PAYFORT_FORT_PAYMENT_METHOD_NAPS', 'payfort_fort_naps');
 define('PAYFORT_FORT_PAYMENT_METHOD_SADAD', 'payfort_fort_sadad');
+define('PAYFORT_FORT_PAYMENT_METHOD_INSTALLMENTS', 'payfort_fort_installments');
 define('PAYFORT_FORT_FLASH_MSG_ERROR', 'E');
 define('PAYFORT_FORT_FLASH_MSG_SUCCESS', 'S');
 define('PAYFORT_FORT_FLASH_MSG_INFO', 'I');
@@ -34,6 +35,7 @@ class Payfort_Fort_Config
     private $gatewaySandboxHost;
     private $logFileDir;
     private $cartPfSettings;
+    private $installmentsIntegrationType;
 
     public function __construct()
     {
@@ -43,21 +45,21 @@ class Payfort_Fort_Config
 
         $this->cartPfSettings = fn_get_payfort_fort_settings();
 
-        $this->language             = $this->_getShoppingCartConfig('language');
-        $this->merchantIdentifier   = $this->_getShoppingCartConfig('merchant_identifier');
-        $this->accessCode           = $this->_getShoppingCartConfig('access_code');
-        $this->command              = $this->_getShoppingCartConfig('command');
-        $this->hashAlgorithm        = $this->_getShoppingCartConfig('hash_algorithm');
-        $this->requestShaPhrase     = $this->_getShoppingCartConfig('sha_in_pass_phrase');
-        $this->responseShaPhrase    = $this->_getShoppingCartConfig('sha_out_pass_phrase');
-        $this->sandboxMode          = $this->_getShoppingCartConfig('mode');
-        $this->gatewayCurrency      = $this->_getShoppingCartConfig('gateway_currency');
-        $this->debugMode            = true;
-        //$this->hostUrl = $this->_getShoppingCartConfig('hostUrl');
-        $this->successOrderStatusId = 'P';
-        $this->orderPlacement       = $this->_getShoppingCartConfig('order_placement');
-        $this->status               = true;
-        $this->ccIntegrationType    = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
+        $this->language                      = $this->_getShoppingCartConfig('language');
+        $this->merchantIdentifier            = $this->_getShoppingCartConfig('merchant_identifier');
+        $this->accessCode                    = $this->_getShoppingCartConfig('access_code');
+        $this->command                       = $this->_getShoppingCartConfig('command');
+        $this->hashAlgorithm                 = $this->_getShoppingCartConfig('hash_algorithm');
+        $this->requestShaPhrase              = $this->_getShoppingCartConfig('sha_in_pass_phrase');
+        $this->responseShaPhrase             = $this->_getShoppingCartConfig('sha_out_pass_phrase');
+        $this->sandboxMode                   = $this->_getShoppingCartConfig('mode');
+        $this->gatewayCurrency               = $this->_getShoppingCartConfig('gateway_currency');
+        $this->debugMode                     = true;
+        $this->successOrderStatusId          = 'P';
+        $this->orderPlacement                = $this->_getShoppingCartConfig('order_placement');
+        $this->status                        = true;
+        $this->ccIntegrationType             = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
+        $this->installmentsIntegrationType   = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION;
     }
 
     /**
@@ -232,6 +234,17 @@ class Payfort_Fort_Config
     public function getLogFileDir()
     {
         return $this->logFileDir;
+    }
+    
+    public function getInstallmentsIntegrationType()
+    {
+        return $this->installmentsIntegrationType;
+    }
+    
+    
+    public function setInstallmentsIntegrationtype($integrationType = PAYFORT_FORT_INTEGRATION_TYPE_REDIRECTION)
+    {
+        $this->ccIntegrationType = $integrationType;
     }
 
 }

@@ -12,9 +12,9 @@ require_once dirname(__FILE__) . "/payfort.functions.php";
 
 function fn_payfort_fort_delete_payment_processors()
 {
-    db_query("DELETE FROM ?:payment_descriptions WHERE payment_id IN (SELECT payment_id FROM ?:payments WHERE processor_id IN (SELECT processor_id FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php','payfort_fort_sadad.php','payfort_fort_naps.php')))");
-    db_query("DELETE FROM ?:payments WHERE processor_id IN (SELECT processor_id FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php','payfort_fort_sadad.php','payfort_fort_naps.php'))");
-    db_query("DELETE FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php','payfort_fort_sadad.php','payfort_fort_naps.php')");
+    db_query("DELETE FROM ?:payment_descriptions WHERE payment_id IN (SELECT payment_id FROM ?:payments WHERE processor_id IN (SELECT processor_id FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php', 'payfort_fort_installments.php', 'payfort_fort_sadad.php','payfort_fort_naps.php')))");
+    db_query("DELETE FROM ?:payments WHERE processor_id IN (SELECT processor_id FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php', 'payfort_fort_installments.php', 'payfort_fort_sadad.php','payfort_fort_naps.php'))");
+    db_query("DELETE FROM ?:payment_processors WHERE processor_script IN ('payfort_fort_cc.php', 'payfort_fort_installments.php', 'payfort_fort_sadad.php','payfort_fort_naps.php')");
 }
 
 function fn_update_payfort_fort_settings($settings)
