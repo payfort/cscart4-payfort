@@ -40,6 +40,9 @@
             <option value="sha1"{if $payfort_fort_settings.payment_settings.hash_algorithm eq "sha1"} selected="selected"{/if}>sha-1</option>
             <option value="sha256"{if $payfort_fort_settings.payment_settings.hash_algorithm eq "sha256"} selected="selected"{/if}>sha-256</option>
             <option value="sha512"{if $payfort_fort_settings.payment_settings.hash_algorithm eq "sha512"} selected="selected"{/if}>sha-512</option>
+            <option value="hmac512"{if $payfort_fort_settings.payment_settings.hash_algorithm eq "hmac512"} selected="selected"{/if}>HMAC-512</option>
+            <option value="hmac256"{if $payfort_fort_settings.payment_settings.hash_algorithm eq "hmac256"} selected="selected"{/if}>HMAC-256</option>
+
         </select>
     </div>
 </div>
