@@ -1,0 +1,1 @@
+{include file="addons/amazon_payment_services/common/gateways.tpl" gateways=$payment.gateways}

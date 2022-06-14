@@ -1,0 +1,601 @@
+msgid ""
+msgstr "Project-Id-Version: tygh"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: en_US"
+
+msgctxt "Addons::name::amazon_payment_services"
+msgid "Amazon Payment Services"
+msgstr "Amazon Payment Services"
+
+msgctxt "LanguageName"
+msgid "Localized language name"
+msgstr "English"
+
+msgctxt "Addons::description::amazon_payment_services"
+msgid "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu"
+msgstr "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu"
+
+msgctxt "Languages::amazon_payment_services"
+msgid "Amazon Payment Services"
+msgstr "Amazon Payment Services"
+
+msgctxt "Languages::response_code"
+msgid "Response Code"
+msgstr "Response Code"
+
+msgctxt "Languages::card_type"
+msgid "Card Type"
+msgstr "Card Type"
+
+msgctxt "Languages::fort_id"
+msgid "Fort ID"
+msgstr "Fort ID"
+
+msgctxt "Languages::knet_ref_number"
+msgid "KNET Ref Number"
+msgstr "KNET Ref Number"
+
+msgctxt "Languages::third_party_transaction_number"
+msgid "Third Party Transaction Number"
+msgstr "Third Party Transaction Number"
+
+msgctxt "Languages::merchant_reference"
+msgid "Reference"
+msgstr "Reference"
+
+msgctxt "Languages::aps_merchant_configuration"
+msgid "Merchant Configuration"
+msgstr "Merchant Configuration"
+
+msgctxt "Languages::aps_global_configuration"
+msgid "Global Configuration"
+msgstr "Global Configuration"
+
+msgctxt "Languages::aps_enabled"
+msgid "Enabled"
+msgstr "Enabled"
+
+msgctxt "Languages::aps_authorization"
+msgid "Authorization"
+msgstr "Authorization"
+
+msgctxt "Languages::aps_purchase"
+msgid "Purchase"
+msgstr "Purchase"
+
+msgctxt "Languages::aps_merchant_identifier"
+msgid "Merchant Identifier"
+msgstr "Merchant Identifier"
+
+msgctxt "Languages::aps_access_code"
+msgid "Access Code"
+msgstr "Access Code"
+
+msgctxt "Languages::aps_request_sha_phrase"
+msgid "Request SHA Phrase"
+msgstr "Request SHA Phrase"
+
+msgctxt "Languages::aps_response_sha_phrase"
+msgid "Response SHA Phrase"
+msgstr "Response SHA Phrase"
+
+msgctxt "Languages::aps_sandbox_mode"
+msgid "Sandbox Mode"
+msgstr "Sandbox Mode"
+
+msgctxt "Languages::aps_command"
+msgid "Command"
+msgstr "Command"
+
+msgctxt "Languages::aps_sha_type"
+msgid "SHA Type"
+msgstr "SHA Type"
+
+msgctxt "Languages::aps_currency"
+msgid "Gateway Currency"
+msgstr "Gateway Currency"
+
+msgctxt "Languages::aps_enable_tokenization"
+msgid "Enable Tokenization"
+msgstr "Enable Tokenization"
+
+msgctxt "Languages::aps_debug_mode"
+msgid "Debug Mode"
+msgstr "Debug Mode"
+
+msgctxt "Languages::aps_host_to_host_url"
+msgid "Host to Host url"
+msgstr "Host to Host url"
+
+msgctxt "Languages::aps_logs"
+msgid "Logs"
+msgstr "Logs"
+
+msgctxt "Languages::aps_logs_link_text"
+msgid "Click here to view logs"
+msgstr "Click here to view logs"
+
+msgctxt "Languages::aps_integration_type"
+msgid "Integration Type"
+msgstr "Integration Type"
+
+msgctxt "Languages::aps_base_currency"
+msgid "Base ([currency])"
+msgstr "Base ([currency])"
+
+msgctxt "Languages::aps_front_currency"
+msgid "Front"
+msgstr "Front"
+
+msgctxt "Languages::aps_redirection"
+msgid "Redirection"
+msgstr "Redirection"
+
+msgctxt "Languages::aps_standard_checkout"
+msgid "Standard Checkout"
+msgstr "Standard Checkout"
+
+msgctxt "Languages::aps_hosted_checkout"
+msgid "Hosted Checkout"
+msgstr "Hosted Checkout"
+
+msgctxt "Languages::aps_embedded_hosted_checkout"
+msgid "Embedded Hosted Checkout"
+msgstr "Embedded Hosted Checkout"
+
+msgctxt "Languages::aps_show_mada_branding"
+msgid "Show mada Branding "
+msgstr "Show mada Branding"
+
+msgctxt "Languages::aps_show_mada_branding_during_checkout"
+msgid "Show mada branding during checkout"
+msgstr "Show mada branding during checkout"
+
+msgctxt "Languages::aps_mada_bins"
+msgid "mada Bins"
+msgstr "mada Bins"
+
+msgctxt "Languages::aps_show_meeza_branding"
+msgid "Show Meeza Branding"
+msgstr "Show Meeza Branding"
+
+msgctxt "Languages::aps_show_meeza_branding_during_checkout"
+msgid "Show Meeza branding during checkout"
+msgstr "Show Meeza branding during checkout"
+
+msgctxt "Languages::aps_meeza_bins"
+msgid "Meeza Bins"
+msgstr "Meeza Bins"
+
+msgctxt "Languages::aps_bins_hint"
+msgid "please do not change any of the below BINs configuration unless it is instructed by APS Integration team. For further inquiries: [email]"
+msgstr "please do not change any of the below BINs configuration unless it is instructed by APS Integration team. For further inquiries: [email]"
+
+msgctxt "Languages::aps_domain_name"
+msgid "Domain Name"
+msgstr "Domain Name"
+
+msgctxt "Languages::aps_display_name"
+msgid "Display Name"
+msgstr "Display Name"
+
+msgctxt "Languages::aps_display_name_hint"
+msgid "A string of 64 or fewer UTF-8 characters containing the canonical name for your store, suitable for display. Do not localize the name."
+msgstr "A string of 64 or fewer UTF-8 characters containing the canonical name for your store, suitable for display. Do not localize the name."
+
+msgctxt "Languages::aps_supported_networks"
+msgid "Supported Networks"
+msgstr "Supported Networks"
+
+msgctxt "Languages::aps_production_key"
+msgid "Production Key"
+msgstr "Production Key"
+
+msgctxt "Languages::aps_enabled_apple_pay_product_page"
+msgid "Enabled Apple Pay in product page"
+msgstr "Enabled Apple Pay in product page"
+
+msgctxt "Languages::aps_enabled_apple_pay_cart_page"
+msgid "Enabled Apple Pay in cart page"
+msgstr "Enabled Apple Pay in cart page"
+
+msgctxt "Languages::aps_apple_button_types"
+msgid "Apply Pay Button Types"
+msgstr "Apply Pay Button Types"
+
+msgctxt "Languages::aps_button_buy"
+msgid "BUY"
+msgstr "BUY"
+
+msgctxt "Languages::aps_button_donate"
+msgid "DONATE"
+msgstr "DONATE"
+
+msgctxt "Languages::aps_button_plain"
+msgid "PLAIN"
+msgstr "PLAIN"
+
+msgctxt "Languages::aps_button_setup"
+msgid "SETUP"
+msgstr "SETUP"
+
+msgctxt "Languages::aps_button_book"
+msgid "BOOK"
+msgstr "BOOK"
+
+msgctxt "Languages::aps_button_checkout"
+msgid "CHECKOUT"
+msgstr "CHECKOUT"
+
+msgctxt "Languages::aps_button_subscribe"
+msgid "SUBSCRIBE"
+msgstr "SUBSCRIBE"
+
+msgctxt "Languages::aps_button_addmoney"
+msgid "ADDMONEY"
+msgstr "ADDMONEY"
+
+msgctxt "Languages::aps_button_contribute"
+msgid "CONTRIBUTE"
+msgstr "CONTRIBUTE"
+
+msgctxt "Languages::aps_button_order"
+msgid "ORDER"
+msgstr "ORDER"
+
+msgctxt "Languages::aps_button_reload"
+msgid "RELOAD"
+msgstr "RELOAD"
+
+msgctxt "Languages::aps_button_rent"
+msgid "RENT"
+msgstr "RENT"
+
+msgctxt "Languages::aps_button_support"
+msgid "SUPPORT"
+msgstr "SUPPORT"
+
+msgctxt "Languages::aps_button_tip"
+msgid "TIP"
+msgstr "TIP"
+
+msgctxt "Languages::aps_button_topup"
+msgid "TOPUP"
+msgstr "TOPUP"
+
+msgctxt "Languages::aps_certificate_file"
+msgid "Certificate File"
+msgstr "Certificate File"
+
+msgctxt "Languages::aps_certificate_key_file"
+msgid "Certificate Key File"
+msgstr "Certificate Key File"
+
+msgctxt "Languages::aps_api_key"
+msgid "API Key"
+msgstr "API Key"
+
+msgctxt "Languages::aps_profile_id"
+msgid "Profile ID"
+msgstr "Profile ID"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_sar"
+msgid "Installment Order Purchase minimum limit (SAR)"
+msgstr "Installment Order Purchase minimum limit (SAR)"
+
+msgctxt "Languages::aps_show_issuer_name"
+msgid "Show issuer name"
+msgstr "Show issuer name"
+
+msgctxt "Languages::aps_show_issuer_logo"
+msgid "Show issuer logo"
+msgstr "Show issuer logo"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_aed"
+msgid "Installment Order Purchase minimum limit (AED)"
+msgstr "Installment Order Purchase minimum limit (AED)"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_egp"
+msgid "Installment Order Purchase minimum limit (EGP)"
+msgstr "Installment Order Purchase minimum limit (EGP)"
+
+msgctxt "Languages::aps_valu_minimum_purchase_limit_egp"
+msgid "VALU Order Purchase minimum limit in EGP"
+msgstr "VALU Order Purchase minimum limit in EGP"
+
+msgctxt "Languages::phone_number"
+msgid "Mobile number"
+msgstr "Mobile number"
+
+msgctxt "Languages::aps_phone_number"
+msgid "Mobile number"
+msgstr "Mobile number"
+
+msgctxt "Languages::aps_phone_number_placeholder"
+msgid "Enter your mobile number"
+msgstr "Enter your mobile number"
+
+msgctxt "Languages::aps_otp_placeholder"
+msgid "Enter OTP"
+msgstr "Enter OTP"
+
+msgctxt "Languages::aps_request_otp"
+msgid "Request OTP"
+msgstr "Request OTP"
+
+msgctxt "Languages::aps_customer not exist"
+msgid "Customer does not exist."
+msgstr "Customer does not exist."
+
+msgctxt "Languages::aps_otp_mobile_sent"
+msgid "OTP has been sent to you on your mobile number"
+msgstr "OTP has been sent to you on your mobile number"
+
+msgctxt "Languages::aps_verify_otp"
+msgid "Verify OTP"
+msgstr "Verify OTP"
+
+msgctxt "Languages::aps_otp_verified_success"
+msgid "OTP verified successfully, Please select your Installment plan!"
+msgstr "OTP verified successfully, Please select your Installment plan!"
+
+msgctxt "Languages::aps_installment_plan"
+msgid "Installment plan"
+msgstr "Installment plan"
+
+msgctxt "Languages::aps_valu_terms_conditions"
+msgid "I agree with the valU <a class='cm-dialog-opener cm-dialog-auto-size' data-ca-target-id='dialog_aps_valu_terms_condition'>terms and condition</a> to proceed with the transaction."
+msgstr "I agree with the valU <a class='cm-dialog-opener cm-dialog-auto-size' data-ca-target-id='dialog_aps_valu_terms_condition'>terms and condition</a> to proceed with the transaction."
+
+msgctxt "Languages::aps_no_insallment_plans"
+msgid "There is no installment plan available"
+msgstr "There is no installment plan available"
+
+msgctxt "Languages::aps_issuer_name"
+msgid "Issuer Name"
+msgstr "Issuer Name"
+
+msgctxt "Languages::issuer_code"
+msgid "Issuer Code"
+msgstr "Issuer Code"
+
+msgctxt "Languages::plan_code"
+msgid "Plan Code"
+msgstr "Plan Code"
+
+msgctxt "Languages::aps_installments_terms_conditions"
+msgid "I agree with the installment <a target='_blank'>terms and condition</a> to proceed with the transaction."
+msgstr "I agree with the installment <a target='_blank'>terms and condition</a> to proceed with the transaction."
+
+msgctxt "Languages::aps_interest"
+msgid "Interest"
+msgstr "Interest"
+
+msgctxt "Languages::tenure"
+msgid "Tenure"
+msgstr "Tenure"
+
+msgctxt "Languages::tenure_amount"
+msgid "Tenure Amount"
+msgstr "Tenure Amount"
+
+msgctxt "Languages::tenure_interest"
+msgid "Tenure Interest"
+msgstr "Tenure Interest"
+
+msgctxt "Languages::total_down_payment"
+msgid "Total Down Payment"
+msgstr "Total Down Payment"
+
+msgctxt "Languages::digital_wallet"
+msgid "Digital Wallet"
+msgstr "Digital Wallet"
+
+msgctxt "Languages::call_id"
+msgid "Visa Checkout Call ID"
+msgstr "Visa Checkout Call ID"
+
+msgctxt "Languages::aps_credit_debit_card"
+msgid "Credit / Debit Card"
+msgstr "Credit / Debit Card"
+
+msgctxt "Languages::aps_mada_debit_credit_card"
+msgid "mada debit card / Credit Cards"
+msgstr "mada debit card / Credit Cards"
+
+msgctxt "Languages::aps_apple_pay"
+msgid "Apple Pay"
+msgstr "Apple Pay"
+
+msgctxt "Languages::aps_knet"
+msgid "KNET"
+msgstr "KNET"
+
+msgctxt "Languages::aps_naps"
+msgid "NAPS"
+msgstr "NAPS"
+
+msgctxt "Languages::aps_visa_checkout"
+msgid "Visa Checkout"
+msgstr "Visa Checkout"
+
+msgctxt "Languages::aps_installments"
+msgid "Installments"
+msgstr "Installments"
+
+msgctxt "Languages::plan"
+msgid "Plan"
+msgstr "Plan"
+
+msgctxt "Languages::installments"
+msgid "Installments"
+msgstr "Installments"
+
+msgctxt "Languages::number_of_installments"
+msgid "No of installments"
+msgstr "No of installments"
+
+msgctxt "Languages::aps_valu"
+msgid "Buy Now, Pay Monthly"
+msgstr "Buy Now, Pay Monthly"
+
+msgctxt "Languages::aps_processing"
+msgid "Processing"
+msgstr "Processing"
+
+msgctxt "Languages::aps_loading"
+msgid "Loading"
+msgstr "Loading"
+
+msgctxt "Languages::aps_order_placed"
+msgid "Order placed successfully !"
+msgstr "Order placed successfully !"
+
+msgctxt "Languages::aps_gateway_disabled_invalid"
+msgid "Payment gateway is disabled or invalid"
+msgstr "Payment gateway is disabled or invalid"
+
+msgctxt "Languages::aps_invalid_order"
+msgid "Invalid order"
+msgstr "Invalid order"
+
+msgctxt "Languages::aps_invalid_request"
+msgid "Invalid payment request"
+msgstr "Invalid payment request"
+
+msgctxt "Languages::aps_gateway_no_valid_response"
+msgid "No valid response from Gateway"
+msgstr "No valid response from Gateway"
+
+msgctxt "Languages::aps_payment_mismatch_signature"
+msgid "Payment signature is not matched"
+msgstr "Payment signature is not matched"
+
+msgctxt "Languages::aps_token_not_valid"
+msgid "Token is not valid"
+msgstr "Token is not valid"
+
+msgctxt "Languages::aps_order"
+msgid "Order"
+msgstr "Order"
+
+msgctxt "Languages::aps_no_payment_option"
+msgid "No payment option found"
+msgstr "No payment option found"
+
+msgctxt "Languages::card expired"
+msgid "Card Expired"
+msgstr "Card Expired"
+
+msgctxt "Languages::invalid card number"
+msgid "Invalid Card Number"
+msgstr "Invalid Card Number"
+
+msgctxt "Languages::success"
+msgid "Success"
+msgstr "Success"
+
+msgctxt "Languages::invalid currency"
+msgid "Invalid currency"
+msgstr "Invalid currency"
+
+msgctxt "Languages::currency not accepted by acquirer"
+msgid "Currency not accepted by acquirer"
+msgstr "Currency not accepted by acquirer"
+
+msgctxt "Languages::currency not accepted by processor"
+msgid "Currency not accepted by processor"
+msgstr "Currency not accepted by processor"
+
+msgctxt "Languages::insufficient funds"
+msgid "insufficient funds"
+msgstr "insufficient funds"
+
+msgctxt "Languages::insufficient funds"
+msgid "insufficient funds"
+msgstr "insufficient funds"
+
+msgctxt "Languages::transaction has been cancelled by the consumer"
+msgid "Transaction has been cancelled by the consumer"
+msgstr "Transaction has been cancelled by the consumer"
+
+msgctxt "Languages::transaction failed"
+msgid "Transaction failed"
+msgstr "Transaction failed"
+
+msgctxt "Languages::transaction declined"
+msgid "Transaction failed"
+msgstr "Transaction failed"
+
+msgctxt "Languages::captured_amount"
+msgid "Captured Amount"
+msgstr "Captured Amount"
+
+msgctxt "Languages::aps_add_new_card"
+msgid "Add a new card"
+msgstr "Add a new card"
+
+msgctxt "Languages::captured"
+msgid "Captured"
+msgstr "Captured"
+
+msgctxt "Languages::aps_void"
+msgid "Void"
+msgstr "Void"
+
+msgctxt "Languages::aps_order_capture_success"
+msgid "Payment captured successfully"
+msgstr "Payment captured successfully"
+
+msgctxt "Languages::aps_order_refund_success"
+msgid "Refund submitted successfully"
+msgstr "Refund submitted successfully"
+
+msgctxt "Languages::aps_order_void_success"
+msgid "Authorization Voided Successfully"
+msgstr "Authorization Voided Successfully"
+
+msgctxt "Languages::aps_refund_amount_greater"
+msgid "Refund amount must be lower than captured amount"
+msgstr "Refund amount must be lower than captured amount"
+
+msgctxt "Languages::api_required_field"
+msgid "The [field] field is required."
+msgstr "The [field] field is required."
+
+msgctxt "Languages::aps_save_my_card"
+msgid "Save my card"
+msgstr "Save my card"
+
+msgctxt "Languages::aps_invalid_mobile_number"
+msgid "Mobile number is invalid."
+msgstr "Mobile number is invalid."
+
+msgctxt "Languages::aps_partial_refund_not_available"
+msgid "Partial refund is not available in this payment method"
+msgstr "Partial refund is not available in this payment method"
+
+msgctxt "Languages::card_number"
+msgid "Card Number"
+msgstr "Card Number"
+
+msgctxt "Languages::cardholder_name"
+msgid "Card Holder Name"
+msgstr "Card Holder Name"
+
+msgctxt "Languages::valid_thru"
+msgid "Expiry Date"
+msgstr "Expiry Date"
+
+msgctxt "Languages::cvv2"
+msgid "CCV"
+msgstr "CCV"
+
+msgctxt "Languages::aps_cronjob_label"
+msgid "Cronjob Url"
+msgstr "Cronjob Url"
+
+msgctxt "Languages::aps_cronjob_text"
+msgid "Use the following commands in order to run CRON job on your server for update pending order's status(1 - we recommend)"
+msgstr "Use the following commands in order to run CRON job on your server for update pending order's status (1 - we recommend)"

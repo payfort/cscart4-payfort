@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>amazon_payment_services</id>
+	<name>Amazon Payment Services</name>
+	<description>Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu</description>
+	<version>1.0</version>
+    <position>10</position>
+	<priority>1000</priority>
+    <status>active</status>
+    <default_language>en</default_language>
+    <supplier>Amazon payment services</supplier>
+    <supplier_link>https://paymentservices.amazon.com/</supplier_link>
+    <functions>
+        <item for="install">fn_amazon_payment_services_install</item>
+        <item for="uninstall">fn_amazon_payment_services_uninstall</item>
+    </functions>
+</addon>

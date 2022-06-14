@@ -1,0 +1,595 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cs-cart-latest\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Arabic\n"
+"Language: ar_SA\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Crowdin-Project: cs-cart-latest\n"
+"X-Crowdin-Project-ID: 50163\n"
+"X-Crowdin-Language: ar\n"
+"PO-Revision-Date: 2021-09-27 14:07+0000\n"
+
+msgctxt "Addons::name::amazon_payment_services"
+msgid "Amazon Payment Services"
+msgstr "دمة الدفع أمازون "
+
+msgctxt "Addons::description::amazon_payment_services"
+msgid "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu"
+msgstr " الائتمان / الخصم ، الأقساط ، Apple Pay ، Visa Checkout ، KNET ، NAPS ، Valu"
+
+msgctxt "Languages::amazon_payment_services"
+msgid "Amazon Payment Services"
+msgstr "دمة الدفع أمازون "
+
+msgctxt "Languages::response_code"
+msgid "Response Code"
+msgstr "رمز الاستجابة"
+
+msgctxt "Languages::card_type"
+msgid "Card Type"
+msgstr "نوع البطاقة"
+
+msgctxt "Languages::fort_id"
+msgid "Fort ID"
+msgstr "Fort ID"
+
+msgctxt "Languages::knet_ref_number"
+msgid "KNET Ref Number"
+msgstr "رقم مرجع KNET"
+
+msgctxt "Languages::third_party_transaction_number"
+msgid "Third Party Transaction Number"
+msgstr "رقم معاملة الطرف الثالث"
+
+msgctxt "Languages::merchant_reference"
+msgid "Reference"
+msgstr "رجع التاجر"
+
+msgctxt "Languages::aps_merchant_configuration"
+msgid "Merchant Configuration"
+msgstr "تكوين التاجر"
+
+msgctxt "Languages::aps_global_configuration"
+msgid "Global Configuration"
+msgstr "ممكن"
+
+msgctxt "Languages::aps_enabled"
+msgid "Enabled"
+msgstr "ممكن"
+
+msgctxt "Languages::aps_authorization"
+msgid "Authorization"
+msgstr "تفويض"
+
+msgctxt "Languages::aps_purchase"
+msgid "Purchase"
+msgstr "عملية الشراء"
+
+msgctxt "Languages::aps_merchant_identifier"
+msgid "Merchant Identifier"
+msgstr "معرّف التاجر"
+
+msgctxt "Languages::aps_access_code"
+msgid "Access Code"
+msgstr "رمز الدخول"
+
+msgctxt "Languages::aps_request_sha_phrase"
+msgid "Request SHA Phrase"
+msgstr "طلب عبارة SHA"
+
+msgctxt "Languages::aps_response_sha_phrase"
+msgid "Response SHA Phrase"
+msgstr "عبارة SHA للرد"
+
+msgctxt "Languages::aps_sandbox_mode"
+msgid "Sandbox Mode"
+msgstr "وضع الحماية"
+
+msgctxt "Languages::aps_command"
+msgid "Command"
+msgstr "أمر"
+
+msgctxt "Languages::aps_sha_type"
+msgid "SHA Type"
+msgstr "SHA Type"
+
+msgctxt "Languages::aps_currency"
+msgid "Currency"
+msgstr "عملة البوابة"
+
+msgctxt "Languages::aps_enable_tokenization"
+msgid "Enable Tokenization"
+msgstr "تمكين الترميز"
+
+msgctxt "Languages::aps_debug_mode"
+msgid "Debug Mode"
+msgstr "وضع التصحيح"
+
+msgctxt "Languages::aps_host_to_host_url"
+msgid "Host to Host url"
+msgstr "المضيف إلى عنوان URL المضيف"
+
+msgctxt "Languages::aps_logs"
+msgid "Logs"
+msgstr "السجلات"
+
+msgctxt "Languages::aps_logs_link_text"
+msgid "Click here to view logs"
+msgstr "انقر هنا لعرض السجلات"
+
+msgctxt "Languages::aps_integration_type"
+msgid "Integration Type"
+msgstr "نوع التكامل"
+
+msgctxt "Languages::aps_base_currency"
+msgid "Base ([currency])"
+msgstr "([currency])يتمركز"
+
+msgctxt "Languages::aps_front_currency"
+msgid "Front"
+msgstr "أمامي"
+
+msgctxt "Languages::aps_redirection"
+msgid "Redirection"
+msgstr "إعادة التوجيه"
+
+msgctxt "Languages::aps_standard_checkout"
+msgid "Standard Checkout"
+msgstr "الخروج القياسي"
+
+msgctxt "Languages::aps_hosted_checkout"
+msgid "Hosted Checkout"
+msgstr "استضافت الخروج"
+
+msgctxt "Languages::aps_embedded_hosted_checkout"
+msgid "Embedded Hosted Checkout"
+msgstr "مضمن مستضاف الخروج"
+
+msgctxt "Languages::aps_show_mada_branding"
+msgid "Show mada Branding"
+msgstr "اعرض علامة مدى التجارية"
+
+msgctxt "Languages::aps_show_mada_branding_during_checkout"
+msgid "Show mada branding during checkout"
+msgstr "اعرض علامة مدى التجارية أثناء الدفع"
+
+msgctxt "Languages::aps_mada_bins"
+msgid "mada Bins"
+msgstr "mada Bins"
+
+msgctxt "Languages::aps_show_meeza_branding"
+msgid "Show Meeza Branding"
+msgstr "اعرض العلامة التجارية لشركة ميزة"
+
+msgctxt "Languages::aps_show_meeza_branding_during_checkout"
+msgid "Show Meeza branding during checkout"
+msgstr "اعرض العلامة التجارية لشركة ميزة أثناء الدفع "
+
+msgctxt "Languages::aps_meeza_bins"
+msgid "Meeza Bins"
+msgstr "Meeza Bins"
+
+msgctxt "Languages::aps_bins_hint"
+msgid "please do not change any of the below BINs configuration unless it is instructed by APS Integration team. For further inquiries: [email]"
+msgstr "يرجى عدم تغيير أي من تكوين BIN أدناه ما لم يطلب ذلك فريق تكامل APS. لمزيد من الاستفسارات: [email]"
+
+msgctxt "Languages::aps_domain_name"
+msgid "Domain Name"
+msgstr "اسم النطاق"
+
+msgctxt "Languages::aps_display_name"
+msgid "Display Name"
+msgstr "اسم العرض"
+
+msgctxt "Languages::aps_display_name_hint"
+msgid "A string of 64 or fewer UTF-8 characters containing the canonical name for your store, suitable for display. Do not localize the name."
+msgstr "سلسلة تتكون من 64 حرفًا أو أقل من أحرف UTF-8 تحتوي على الاسم الأساسي لمتجرك ، ومناسب للعرض. لا تعريب الاسم."
+
+msgctxt "Languages::aps_supported_networks"
+msgid "Supported Networks"
+msgstr "الشبكات المدعومة"
+
+msgctxt "Languages::aps_production_key"
+msgid "Production Key"
+msgstr "مفتاح الإنتاج"
+
+msgctxt "Languages::aps_enabled_apple_pay_product_page"
+msgid "Enabled Apple Pay in product page"
+msgstr "قم بتمكين Apple Pay في صفحة المنتج"
+
+msgctxt "Languages::aps_enabled_apple_pay_cart_page"
+msgid "Enabled Apple Pay in cart page"
+msgstr "تفعيل Apple Pay في صفحة عربة التسوق"
+
+msgctxt "Languages::aps_apple_button_types"
+msgid "Apply Pay Button Types"
+msgstr "أنواع زر Apple Pay"
+
+msgctxt "Languages::aps_button_buy"
+msgid "BUY"
+msgstr "يشترى"
+
+msgctxt "Languages::aps_button_donate"
+msgid "DONATE"
+msgstr "يتبرع"
+
+msgctxt "Languages::aps_button_plain"
+msgid "PLAIN"
+msgstr "عادي"
+
+msgctxt "Languages::aps_button_setup"
+msgid "SETUP"
+msgstr "يثبت"
+
+msgctxt "Languages::aps_button_book"
+msgid "BOOK"
+msgstr "كتاب"
+
+msgctxt "Languages::aps_button_checkout"
+msgid "CHECKOUT"
+msgstr "الدفع"
+
+msgctxt "Languages::aps_button_subscribe"
+msgid "SUBSCRIBE"
+msgstr "الإشتراك"
+
+msgctxt "Languages::aps_button_addmoney"
+msgid "ADDMONEY"
+msgstr "إضافة المال"
+
+msgctxt "Languages::aps_button_contribute"
+msgid "CONTRIBUTE"
+msgstr "مساهمة"
+
+msgctxt "Languages::aps_button_order"
+msgid "ORDER"
+msgstr "ترتيب"
+
+msgctxt "Languages::aps_button_reload"
+msgid "RELOAD"
+msgstr "إعادة تحميل"
+
+msgctxt "Languages::aps_button_rent"
+msgid "RENT"
+msgstr "إيجار"
+
+msgctxt "Languages::aps_button_support"
+msgid "SUPPORT"
+msgstr "الدعم"
+
+msgctxt "Languages::aps_button_tip"
+msgid "TIP"
+msgstr "تلميح"
+
+msgctxt "Languages::aps_button_topup"
+msgid "TOPUP"
+msgstr "TOPUPفوق حتى"
+
+msgctxt "Languages::aps_certificate_file"
+msgid "Certificate File"
+msgstr "ملف مسار الشهادة"
+
+msgctxt "Languages::aps_certificate_key_file"
+msgid "Certificate Key File"
+msgstr "مفتاح مسار الشهادة"
+
+msgctxt "Languages::aps_api_key"
+msgid "API Key"
+msgstr "مفتاح API"
+
+msgctxt "Languages::aps_profile_id"
+msgid "Profile ID"
+msgstr "ملف البطاقة الشخصية"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_sar"
+msgid "Installment Order Purchase minimum limit (SAR)"
+msgid "الحد الأدنى لطلبات الشراء (ريال سعودي)"
+
+msgctxt "Languages::aps_show_issuer_name"
+msgid "Show issuer name"
+msgstr "إظهار اسم المُصدر"
+
+msgctxt "Languages::aps_show_issuer_logo"
+msgid "Show issuer logo"
+msgstr "إظهار شعار المُصدر"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_aed"
+msgid "Installment Order Purchase minimum limit (AED)"
+msgstr "الحد الأدنى لشراء أوامر الشراء (بالدرهم الإماراتي)"
+
+msgctxt "Languages::aps_installments_minimum_purchase_limit_egp"
+msgid "Installment Order Purchase minimum limit (EGP)"
+msgid "الحد الأدنى لطلبات الشراء (بالجنيه المصري)"
+
+msgctxt "Languages::aps_valu_minimum_purchase_limit_egp"
+msgid "VALU Order Purchase minimum limit in EGP"
+msgstr "الحد الأدنى للشراء لأمر VALU بالجنيه المصري"
+
+msgctxt "Languages::aps_phone_number"
+msgid "Mobile number"
+msgstr "رقم الهاتف المحمول"
+
+msgctxt "Languages::phone_number"
+msgid "Mobile number"
+msgstr "رقم الهاتف المحمول"
+
+msgctxt "Languages::aps_phone_number_placeholder"
+msgid "Enter your mobile number"
+msgstr "أدخل رقم هاتفك المحمول"
+
+msgctxt "Languages::aps_otp_placeholder"
+msgid "Enter OTP"
+msgstr "أدخل OTP"
+
+msgctxt "Languages::aps_request_otp"
+msgid "Request OTP"
+msgstr "طلب OTP"
+
+msgctxt "Languages::aps_customer not exist"
+msgid "Customer does not exist."
+msgstr "الزبون غير موجود."
+
+msgctxt "Languages::aps_otp_mobile_sent"
+msgid "OTP has been sent to you on your mobile number"
+msgstr "م إرسال OTP إليك على رقم هاتفك المحمول"
+
+msgctxt "Languages::aps_verify_otp"
+msgid "Verify OTP"
+msgstr "تحقق من OTP"
+
+msgctxt "Languages::aps_otp_verified_success"
+msgid "OTP verified successfully, Please select your Installment plan!"
+msgstr "تم التحقق من OTP بنجاح ، يرجى تحديد خطة التقسيط الخاصة بك!"
+
+msgctxt "Languages::aps_installment_plan"
+msgid "Installment plan"
+msgstr "خطة التقسيط"
+
+msgctxt "Languages::aps_valu_terms_conditions"
+msgid "I agree with the valU <a class='cm-dialog-opener cm-dialog-auto-size' data-ca-target-id='dialog_aps_valu_terms_condition'>terms and condition</a> to proceed with the transaction."
+msgstr "أنا أتفق مع valU <a class='cm-dialog-opener cm-dialog-auto-size' data-ca-target-id='dialog_aps_valu_terms_condition'> الشروط والأحكام </a> لمتابعة الصفقة"
+
+msgctxt "Languages::aps_no_insallment_plans"
+msgid "There is no installment plan available"
+msgstr "لا توجد خطة تقسيط متاحة"
+
+msgctxt "Languages::aps_issuer_name"
+msgid "Issuer Name"
+msgstr "اسم المُصدر"
+
+msgctxt "Languages::issuer_code"
+msgid "Issuer Code"
+msgstr "كود المصدر"
+
+msgctxt "Languages::plan_code"
+msgid "Plan Code"
+msgstr "كود الخطة"
+
+msgctxt "Languages::aps_installments_terms_conditions"
+msgid "I agree with the installment <a target='_blank'>terms and condition</a> to proceed with the transaction."
+msgstr "أوافق على القسط <a target='_blank'> الشروط والأحكام </a> لمتابعة المعاملة"
+
+msgctxt "Languages::aps_interest"
+msgid "Interest"
+msgstr "سعر فائدة البنك"
+
+msgctxt "Languages::tenure"
+msgid "Tenure"
+msgstr "فترة"
+
+msgctxt "Languages::tenure_amount"
+msgid "Tenure Amount"
+msgstr "مبلغ الحيازة"
+
+msgctxt "Languages::tenure_interest"
+msgid "Tenure Interest"
+msgstr "فائدة الحيازة"
+
+msgctxt "Languages::total_down_payment"
+msgid "Total Down Payment"
+msgstr "إجمالي الدفعة المقدمة"
+
+msgctxt "Languages::digital_wallet"
+msgid "Digital Wallet"
+msgstr "Digital Wallet"
+
+msgctxt "Languages::call_id"
+msgid "Visa Checkout Call ID"
+msgstr "Visa Checkout Call ID"
+
+msgctxt "Languages::aps_credit_debit_card"
+msgid "Credit / Debit Card"
+msgstr "بطاقة الائتمان / الخصم"
+
+msgctxt "Languages::aps_mada_debit_credit_card"
+msgid "mada debit card / Credit Cards"
+msgstr "طاقة مدى / بطاقات الائتمان"
+
+msgctxt "Languages::aps_apple_pay"
+msgid "Apple Pay"
+msgstr "Apple Pay"
+
+msgctxt "Languages::aps_knet"
+msgid "KNET"
+msgstr "KNET"
+
+msgctxt "Languages::aps_naps"
+msgid "NAPS"
+msgstr "NAPS"
+
+msgctxt "Languages::aps_visa_checkout"
+msgid "Visa Checkout"
+msgstr "Visa Checkout"
+
+msgctxt "Languages::aps_installments"
+msgid "Installments"
+msgstr "لتقسيط"
+
+msgctxt "Languages::plan"
+msgid "Plan"
+msgstr "يخطط"
+
+msgctxt "Languages::installments"
+msgid "Installments"
+msgstr "لتقسيط"
+
+msgctxt "Languages::number_of_installments"
+msgid "No of installments"
+msgstr "عدد الاقساط"
+
+msgctxt "Languages::aps_valu"
+msgid "Buy Now, Pay Monthly"
+msgstr "اشتري الآن وادفع شهريا"
+
+msgctxt "Languages::aps_processing"
+msgid "Processing"
+msgstr "معالجة"
+
+msgctxt "Languages::aps_loading"
+msgid "Loading"
+msgstr "تحميل"
+
+msgctxt "Languages::aps_order_placed"
+msgid "Order placed successfully !"
+msgstr "تم تقديم الطلب بنجاح!"
+
+msgctxt "Languages::aps_gateway_disabled_invalid"
+msgid "Payment gateway is disabled or invalid"
+msgstr "بوابة الدفع معطلة أو غير صالحة"
+
+msgctxt "Languages::aps_invalid_order"
+msgid "Invalid order"
+msgstr "طلب غير صحيح"
+
+msgctxt "Languages::aps_invalid_request"
+msgid "Invalid payment request"
+msgstr "طلب دفع غير صالح"
+
+msgctxt "Languages::aps_gateway_no_valid_response"
+msgid "No valid response from Gateway"
+msgstr "لا توجد استجابة صالحة من البوابة"
+
+msgctxt "Languages::aps_payment_mismatch_signature"
+msgid "Payment signature is not matched"
+msgstr "توقيع الدفع غير مطابق"
+
+msgctxt "Languages::aps_token_not_valid"
+msgid "Token is not valid"
+msgstr "الرمز غير صالح"
+
+msgctxt "Languages::aps_order"
+msgid "Order"
+msgstr "الطلب"
+
+msgctxt "Languages::aps_no_payment_option"
+msgid "No payment option found"
+msgstr "لم يتم العثور على خيار دفع"
+
+msgctxt "Languages::card expired"
+msgid "Card Expired"
+msgstr "البطاقة منتهية الصلاحية"
+
+msgctxt "Languages::invalid card number"
+msgid "Invalid Card Number"
+msgstr "رقم البطاقة غير صالحة"
+
+msgctxt "Languages::success"
+msgid "Success"
+msgstr "النجاح"
+
+msgctxt "Languages::invalid currency"
+msgid "Invalid currency"
+msgstr "عملة غير صحيحة"
+
+msgctxt "Languages::currency not accepted by acquirer"
+msgid "Currency not accepted by acquirer"
+msgstr "العملة غير مقبولة من قبل المشتري"
+
+msgctxt "Languages::currency not accepted by processor"
+msgid "Currency not accepted by processor"
+msgstr "العملة لا يقبلها المعالج"
+
+msgctxt "Languages::insufficient funds"
+msgid "Insufficient funds"
+msgstr "رصيد غير كاف"
+
+msgctxt "Languages::transaction has been cancelled by the consumer"
+msgid "Transaction has been cancelled by the consumer"
+msgstr "م إلغاء الصفقة"
+
+msgctxt "Languages::transaction failed"
+msgid "Transaction failed"
+msgstr "فشل الاجراء"
+
+msgctxt "Languages::transaction declined"
+msgid "Transaction declined"
+msgstr "تم رفض الصفقة"
+
+msgctxt "Languages::aps_add_new_card"
+msgid "Add a new card"
+msgstr "أضف بطاقة جديدة"
+
+msgctxt "Languages::captured_amount"
+msgid "Captured Amount"
+msgstr "المبلغ الملتقط"
+
+msgctxt "Languages::captured"
+msgid "Captured"
+msgstr "أسر"
+
+msgctxt "Languages::aps_void"
+msgid "Void"
+msgstr "فارغ"
+
+msgctxt "Languages::aps_order_capture_success"
+msgid "Payment captured successfully"
+msgstr "التقاط الدفع بنجاح"
+
+msgctxt "Languages::aps_order_refund_success"
+msgid "Refund submitted successfully"
+msgstr "تم إرسال المبلغ المسترد بنجاح"
+
+msgctxt "Languages::aps_order_void_success"
+msgid "Authorization Voided Successfully"
+msgstr "تم إلغاء التفويض بنجاح"
+
+msgctxt "Languages::aps_refund_amount_greater"
+msgid "Refund amount must be lower than captured amount"
+msgstr "يجب أن يكون مبلغ الاسترداد أقل من المبلغ الذي تم تسجيله"
+
+msgctxt "Languages::aps_save_my_card"
+msgid "Save my card"
+msgstr "حفظ بطاقتي"
+
+msgctxt "Languages::aps_invalid_mobile_number"
+msgid "Mobile number is invalid."
+msgstr "رقم الجوال غير صحيح"
+
+msgctxt "Languages::aps_partial_refund_not_available"
+msgid "Partial refund is not available in this payment method"
+msgstr "استرداد جزئي غير متوفر في طريقة الدفع هذه"
+
+msgctxt "Languages::card_number"
+msgid "Card Number"
+msgstr "رقم البطاقة"
+
+msgctxt "Languages::cardholder_name"
+msgid "Card Holder Name"
+msgstr "إسم صاحب البطاقة"
+
+msgctxt "Languages::valid_thru"
+msgid "Expiry Date"
+msgstr "تاريخ انتهاء الصلاحية"
+
+msgctxt "Languages::cvv2"
+msgid "CCV"
+msgstr "CCV"
+
+msgctxt "Languages::aps_cronjob_label"
+msgid "Cronjob Url"
+msgstr "Cronjob Url"
+
+msgctxt "Languages::aps_cronjob_text"
+msgid "Use the following commands in order to run CRON job on your server for update pending order's status(1 - we recommend)"
+msgstr "استخدم الأوامر التالية لتشغيل مهمة CRON على الخادم الخاص بك لتحديث حالة الأمر المعلق (1 - نوصي)"
