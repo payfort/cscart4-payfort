@@ -1,1 +1,0 @@
-<p>{__("text_payfort_fort_fill_general_settings_message")}</p>
