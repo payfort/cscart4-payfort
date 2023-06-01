@@ -116,11 +116,11 @@ if( $mode == 'applepay_checkout'){
     	
 	   $cart = fn_checkout_update_payment($cart, $auth, $payment_id);
 	   $cart['skip_notification'] = true;
-			
+
 		if( $action == 'place_order' ){
 			
 			if (empty($cart['user_data']['email'])) {
-	         if (empty($auth['user_id'])) 
+	         if (empty($auth['user_id']))
                $cart['user_data']['email'] = fn_checkout_generate_fake_email_address($cart['user_data'], TIME);
             else {
                $user_data = fn_get_user_info($auth['user_id'], false);

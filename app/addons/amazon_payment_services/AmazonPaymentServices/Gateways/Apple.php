@@ -108,7 +108,7 @@ class Apple extends Gateway {
 		        curl_setopt($ch, CURLOPT_SSLCERT, $certi_apth);
 				curl_setopt($ch, CURLOPT_SSLKEY, $key_path);
 				curl_setopt($ch, CURLOPT_SSLKEYPASSWD, $production_key);
-				curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTPS);
+
 			    $resp = (array)json_decode(trim(curl_exec($ch)),true);
 
 		        if( curl_errno($ch) )

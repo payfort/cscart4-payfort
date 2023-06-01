@@ -120,7 +120,7 @@
 
 					if( res.data ){
 						if( res.data.order_id )
-							btn.attr('data-order_id',res.data.order_id).data('order_id',res.data.order_id);   
+							btn.attr('data-order_id',res.data.order_id).data('order_id',res.data.order_id);
 					}
  
 					if( res.success ){

@@ -4,8 +4,8 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 if( $mode == 'action' ){
 
-	$params = (array)filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING)+(array)filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
-	
+	$params = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
 	$action= !empty($params['action']) ? strtolower(trim($params['action'])) : '';
 	$order_id = !empty($params['order_id']) ? (int)$params['order_id'] : 0;
 	$amount = !empty($params['amount']) ? floatval(filter_var($params['amount'],FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)) : 0;
