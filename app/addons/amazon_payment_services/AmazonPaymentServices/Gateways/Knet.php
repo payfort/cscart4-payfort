@@ -22,7 +22,7 @@ class Knet extends Gateway {
 
 		if( !empty($params['phone_number']) )
 			$params['phone_number'] = trim(preg_replace('/[^0-9+]/', '',$params['phone_number']));
-		
+
 		return $params;
 	}
 

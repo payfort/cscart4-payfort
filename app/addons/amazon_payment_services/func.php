@@ -366,8 +366,7 @@ function fn_amazon_payment_services_order_actions($order_id, $action, $amount=0)
 
    $success = $error = false;
    $order_info = fn_get_order_info($order_id, false, true, true, false);
-   $gw_type = !empty($order_info['aps_gateway']) ? strtolower(trim($order_info['aps_gateway'])) : null;
-
+        
    if( fn_check_payment_script('aps.php',$order_id) && in_array($action,['void','refund','capture']) ){
 
       $payment_info = !empty($order_info['payment_info']) ? $order_info['payment_info'] : [];
@@ -375,8 +374,8 @@ function fn_amazon_payment_services_order_actions($order_id, $action, $amount=0)
 
       $type = trim(!empty($order_info['aps_gateway']) ? $order_info['aps_gateway'] : '');
 
-      $gateway = new \AmazonPaymentServices\Gateways\Gateway($payment_info['gateway'],$processor_params,$gw_type);
-      
+      $gateway = new \AmazonPaymentServices\Gateways\Gateway($payment_info['gateway'],$processor_params);
+
       $pamount = floatval($payment_info['amount']);
       $done_amount = 0;
       if( $action == 'void'){

@@ -3,7 +3,7 @@
     <id>amazon_payment_services</id>
 	<name>Amazon Payment Services</name>
 	<description>Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu</description>
-	<version>1.0</version>
+	<version>2.0.1</version>
     <position>10</position>
 	<priority>1000</priority>
     <status>active</status>

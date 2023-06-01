@@ -31,7 +31,7 @@
                     {if empty($value)}{$value = []}{/if}
                     {foreach from=$field.values|default:[] item="val" key="vk"}
                     <label class="checkbox inline" for="elm_chb_{$field_name}_{$vk}">
-                        <input type="checkbox" name="payment_data[processor_params][{$field_name}][{$vk}]" id="elm_chb_{$field_name}_{$vk}"{if $value[$vk] eq "Y"} checked="checked"{/if} value="Y"/>
+                        <input type="checkbox" name="payment_data[processor_params][{$field_name}][{$vk}]" id="elm_chb_{$field_name}_{$vk}"{if is_array($value) && isset($value[$vk]) && $value[$vk] eq "Y"} checked="checked"{/if} value="Y"/>
                         {$val}
                     </label>
                     {/foreach}

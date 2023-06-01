@@ -150,7 +150,7 @@
 
 					if( res.data ){
 						if( res.data.order_id )
-							btn.attr('data-order_id',res.data.order_id).data('order_id',res.data.order_id);   
+							btn.attr('data-order_id',res.data.order_id).data('order_id',res.data.order_id);
 					}
  
 					if( res.success ){
@@ -160,7 +160,6 @@
 						
 						$(".ty-ajax-overlay,.ty-ajax-loading-box").show(); 					
 						window.location.href = res.redirect_url;
-						
 					} else {
 						if( res.error )
 							$.ceNotification('show',{ type: 'E', title: _.tr('error'), message: res.error });

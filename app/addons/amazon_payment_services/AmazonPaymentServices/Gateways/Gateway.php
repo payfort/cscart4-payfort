@@ -61,13 +61,10 @@ class Gateway{
 
 	public $supportedCurriences = [];
 
-	public function __construct($title,$params, $type = null){
+	public function __construct($title,$params){
 		
 		if( is_string($params) )
 			$params = unserialize($params);
-
-		if( !empty($type) )
-			$params = $this->parseParams($type,$params);
 
 		$this->active = isset($params['enabled']) && $params['enabled'] == 'Y' ? true : false;
 
@@ -966,29 +963,4 @@ class Gateway{
 		$this->logger->log($info, $data, $this->type);
 	}
 
-	private function parseParams($type,$_params =[]){
-
-		$params = [];
-
-		$req_params = ['merchant_identifier','access_code','request_sha_phrase','response_sha_phrase','sandbox_mode','command','sha_type','currency','enable_tokenization','debug_mode'];
-		if( empty($_params) )
-			$_params = [];
-
-		foreach( $_params as $key => $value){
-			if( strpos($key, $type.'_') === 0 || in_array($key,$req_params) ){
-				if( strpos($key, $type.'_') === 0 )
-					$key = str_replace('#'.$type.'_','','#'.$key);
-				$params[$key] = is_array($value) ? $value : trim($value);
-			}
-		}
-
-		if( $type == 'installments' ){			
-			$params['show_mada_branding'] = trim($this->config['cc_show_mada_branding']);
-			$params['mada_bins'] = trim($this->config['cc_mada_bins']);
-			$params['show_meeza_branding'] = trim($this->config['cc_show_meeza_branding']);
-			$params['meeza_bins'] = trim($this->config['cc_meeza_bins']);
-		}
-		
-		return $params;
-	}
 }
