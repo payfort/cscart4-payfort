@@ -195,7 +195,7 @@
                     else 
                         ccCv2.addClass("cm-required");
                     
-                    if( ['mada','amex'].indexOf(result.card_type.name) != -1 )  
+                    if( ['amex'].indexOf(result.card_type.name) != -1 )  
                         ccv2MaxLenth = 4;
                 }
                 
