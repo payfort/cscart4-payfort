@@ -8,7 +8,37 @@ We know that payment processing is critical to your business. With this plugin w
 
 ## Configuration and User Guide
 You can download the archive [file](/cscart-aps.zip) of the plugin and easily install it via CSCart admin screen.
-CSCart add-on user guide is included in the repository [here](/CSCART%20Add-on%20User%20Guide_v0.1.pdf) 
+CSCart add-on user guide is included in the repository [here](https://github.com/payfort/cscart4-payfort/wiki) 
+
+# Installation
+## From Admin Panel
+1. Login to [Admin Panel] of CS-Cart website 
+1. Navigate to Add-ons → Manage Add-ons -> CS-Cart 
+1. Click on gear button to select the option Manual Installation from header Section 
+1. Click on “Local” and choose the add-on zip file 
+1. Navigate to Add-ons → Manage Add-ons -> Amazon Payment Services, check the status if not Active then Activate it 
+1. Follow the configuration steps mentioned in Step 3 
+## From Backend Server
+1. Login to [Admin Panel] of CS-Cart website 
+1. Navigate to Add-ons → Manage Add-ons -> CS-Cart 
+1. Click on gear button to select the option Manual Installation from header Section 
+1. Click on “Server” and choose the add-on zip file at remote location. 
+1. Navigate to Add-ons → Manage Add-ons -> Amazon Payment Services, check the status if not Active then Activate it 
+1. Follow the configuration steps mentioned in Step 3 
+## From a Remote URL
+1. Login to [Admin Panel] of CS-Cart website 
+1. Navigate to Add-ons → Manage Add-ons -> CS-Cart 
+1. Click on gear button to select the option Manual Installation from header Section 
+1. Click on “Url” and enter the link for  add-on zip file at remote location. 
+1. Navigate to Add-ons → Manage Add-ons -> Amazon Payment Services, check the status if not Active then Activate it 
+1. Follow the configuration steps mentioned in Step 3 
+## Configuration
+
+Follow the below instruction to access configuration page of APS CS-Cart add-on:  
+
+1. Navigate to Administration -> Payment method 
+1. Under Configure section find a payment methods names as “Amazon Payment Services” 
+1. Click on Title(“Amazon Payment Services”) to configure the add-on 
    
 
 ## Payment Options
