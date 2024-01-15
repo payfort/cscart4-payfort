@@ -931,9 +931,6 @@ class Gateway{
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
         $response = json_decode(trim(curl_exec($ch)),true);
         if( curl_errno($ch) && !$response)
         	$response['error'] = curl_error($ch);

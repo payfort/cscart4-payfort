@@ -67,6 +67,7 @@ Follow the below instruction to access configuration page of APS CS-Cart add-on:
 
 | Plugin Version | Release Notes |
 | :---: | :--- |
+| 2.0.2 |   * Fix - Session signout after redirection<br />* Fix - Curl SSL verify host |
 | 2.0.1 |   * Fix - PHP 8 compatibility |
 | 2.0.0 |   * Integrated payment options: MasterCard, Visa, AMEX, mada, Meeza, KNET, NAPS, Visa Checkout, ApplePay, valU <br/> * Tokenization is enabled for Debit/Credit Cards and Installments <br/> * Partial/Full Refund, Single/Multiple Capture and Void events are manage in CSCart order management screen <br /> * ApplePay is activated in Product and Cart pages <br /> * Installments are embedded in Debit/Credit Card payment option | 
 
