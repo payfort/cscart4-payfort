@@ -5,6 +5,14 @@ use Tygh\Registry;
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 //if ($mode == 'place_order') {
+    setcookie(Tygh::$app['session']->getName(), Tygh::$app['session']->getId(), [
+           'expires'  => time()+3600,
+           'path'     => ini_get('session.cookie_path'),
+           'domain'   => ini_get('session.cookie_domain'),
+           'samesite' => 'None',
+           'secure'   => true,
+           'httponly' => ini_get('session.cookie_httponly')
+        ]);
 
     $success = $error = false;
 
