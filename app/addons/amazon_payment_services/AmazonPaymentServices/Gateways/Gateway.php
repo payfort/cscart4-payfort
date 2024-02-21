@@ -313,7 +313,7 @@ class Gateway{
 			$order_status = 'I';
 
 		} elseif ( $resType == 'REFUND_SUCCESS' ){
-			$order_status = 'P';
+			$order_status = 'I';
 			//on refund;
 
 		} else {
@@ -825,7 +825,7 @@ class Gateway{
 
 			} elseif ( $resType == 'REFUND_SUCCESS' ){
 				$command = 'REFUND';
-				$order_status = 'B';
+				$order_status = 'I';
 			} else {
 				if( $resType && $resType != 'FAILED' )
 					$order_status = 'D';

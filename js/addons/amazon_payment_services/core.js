@@ -176,7 +176,7 @@
 				if( ths.data('card_number') != undefined ){
 					_cntr = ths.closest('.aps_card_token');
 					_btype = 't';
-					_fdata += '&payment_data[aps][installments][card_number]='+ths.data('card_number');
+					_fdata += '&payment_data[aps][installments][card_number]='+ths.data('card_number').slice(0,8);
 				}
 				_cntr.find('.help-inline').remove();
 				if( _isLinked )

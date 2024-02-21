@@ -84,7 +84,9 @@
             
             if (!isChromeOnOldAndroid()) {
                 ccNumberInput.inputmask("9999 9999 9999 9[9][9][9]", {
-                    placeholder: ''
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
                 });
             }
 
@@ -98,7 +100,9 @@
 
             if (!isChromeOnOldAndroid()) {
                 ccCv2Input.inputmask("999[9]", {
-                    placeholder: ''
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
                 });
             }
 
@@ -126,11 +130,15 @@
             
             if (!isChromeOnOldAndroid()) {
                 ccMonthInput.inputmask("99", {
-                    placeholder: ''
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
                 });
 
                 ccYearInput.inputmask("99", {
-                    placeholder: ''
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
                 });
             }
 
@@ -182,7 +190,9 @@
                 if (result.card_type) {
                     
                     if( result.card_type.inputMask )
-                        ccNumberInput.inputmask(result.card_type.inputMask, { placeholder: '' });
+                        ccNumberInput.inputmask(result.card_type.inputMask, { placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false });
 
                     if( result.length_valid ) 
                         ccNumberInput.addClass('is-valid');
@@ -202,6 +212,9 @@
                 ccCv2Input.attr('maxlength',ccv2MaxLenth);
                 ccCv2Val = ccCv2Input.val().trim();
 
+                if (!result.length_valid) {
+                    ccNumberInput.removeClass('is-valid');
+                }
                 if( ccCv2Val != '' && ccCv2Val > ccv2MaxLenth) 
                     ccCv2Input.val(ccCv2Val.slice(0,ccv2MaxLenth));
             });
