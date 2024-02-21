@@ -37,6 +37,7 @@ CSCart add-on user guide is included in the repository [here](/CSCART%20Add-on%2
 
 | Plugin Version | Release Notes |
 | :---: | :--- |
+| 2.0.3 |   * Fix - Refund status set to Cancelled after receiving notification<br />* Fix - Hosted installments exception fix for empty fields |
 | 2.0.2 |   * Fix - Session signout after redirection<br />* Fix - Curl SSL verify host |
 | 2.0.1 |   * Fix - PHP 8 compatibility |
 | 2.0.0 |   * Integrated payment options: MasterCard, Visa, AMEX, mada, Meeza, KNET, NAPS, Visa Checkout, ApplePay, valU <br/> * Tokenization is enabled for Debit/Credit Cards and Installments <br/> * Partial/Full Refund, Single/Multiple Capture and Void events are manage in CSCart order management screen <br /> * ApplePay is activated in Product and Cart pages <br /> * Installments are embedded in Debit/Credit Card payment option | 
