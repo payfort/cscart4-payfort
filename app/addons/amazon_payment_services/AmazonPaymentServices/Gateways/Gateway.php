@@ -358,6 +358,9 @@ class Gateway{
 		if( !empty($post['knet_ref_number']) )
 			$details['knet_ref_number'] = $post['knet_ref_number'];
 
+        if( !empty($post['tabby_ref_number']) )
+            $details['tabby_ref_number'] = $post['tabby_ref_number'];
+
 		if( !empty($post['third_party_transaction_number']) )
 			$details['third_party_transaction_number'] = $post['third_party_transaction_number'];
 
@@ -629,6 +632,14 @@ class Gateway{
             'language' => $this->getLanguage(),
         ];
 
+        if ($this->type === 'tabby') {
+            if (empty($this->customer_info['phone_number'])) {
+                $res['error'] = 'Please fill phone number to continue with payment';
+                $res['success'] = false;
+                return $res;
+            }
+        }
+
         if( $this->getReturnUrl() )
             $params['return_url'] = $this->getReturnUrl();  
 
@@ -838,6 +849,9 @@ class Gateway{
 
 			if( !empty($resp['knet_ref_number']) )
 				$details['knet_ref_number'] = $resp['knet_ref_number'];
+
+            if( !empty($resp['tabby_ref_number']) )
+                $details['tabby_ref_number'] = $resp['tabby_ref_number'];
 
 			if( !empty($resp['third_party_transaction_number']) )
 				$details['third_party_transaction_number'] = $resp['third_party_transaction_number'];

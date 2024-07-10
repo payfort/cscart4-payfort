@@ -414,6 +414,10 @@ msgctxt "Languages::aps_knet"
 msgid "KNET"
 msgstr "KNET"
 
+msgctxt "Languages::aps_tabby"
+msgid "Pay in 4. No interest, no fees."
+msgstr "قسّمها على 4. بدون أي فوائد، أو رسوم."
+
 msgctxt "Languages::aps_naps"
 msgid "NAPS"
 msgstr "NAPS"

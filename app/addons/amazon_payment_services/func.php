@@ -109,23 +109,25 @@ function fn_amazon_payment_services_check_applypay_button($page,$process = true)
             
             if( !empty($cart['products']) ){
 
-               $shipping_calculation_type = fn_checkout_get_shippping_calculation_type($cart,true);
-               
-               list($cart_products, $product_groups) = fn_calculate_cart_content($cart, $auth, $shipping_calculation_type, true, 'F');
-               
-               if( !empty($cart['total']) ){
+                    $shipping_calculation_type = fn_checkout_get_shippping_calculation_type($cart,true);
 
-                  $currency = CART_SECONDARY_CURRENCY;
-                  $cart_subtotal = number_format($cart['subtotal'],2,'.','');
-                  $shipping_cost = number_format($cart['shipping_cost'],2,'.','');
-                  $tax_subtotal = number_format($cart['tax_subtotal'],2,'.','');
-                  $cart_total = number_format($cart['total'],2,'.','');
-                  $discount = number_format($cart['discount'],2,'.','');
+                    list($cart_products, $product_groups) = fn_calculate_cart_content($cart, $auth, $shipping_calculation_type, true, 'F');
 
-                  $extra = [];
-                  $extra['running_total'] = number_format($cart_subtotal+$tax_subtotal-$discount,2,'.','');
-                  $extra['shippings'] = [];
-                  $extra['shipping_cost'] = $shipping_cost;
+                    if( !empty($cart['total']) ){
+                        $useBaseCurrency = isset($payment_info['processor_params']['currency']) && $payment_info['processor_params']['currency'] == 'B';
+
+                        $currency = $useBaseCurrency ? CART_PRIMARY_CURRENCY : CART_SECONDARY_CURRENCY;
+
+                        $cart_subtotal = formatPriceByCurrencyType($cart['subtotal'], $useBaseCurrency);
+                        $shipping_cost = formatPriceByCurrencyType($cart['shipping_cost'], $useBaseCurrency);
+                        $tax_subtotal = formatPriceByCurrencyType($cart['tax_subtotal'], $useBaseCurrency);
+                        $cart_total = formatPriceByCurrencyType($cart['total'], $useBaseCurrency);
+                        $discount = formatPriceByCurrencyType($cart['discount'], $useBaseCurrency);
+
+                        $extra = [];
+                        $extra['running_total'] = number_format($cart_subtotal+$tax_subtotal-$discount,2,'.','');
+                        $extra['shippings'] = [];
+                        $extra['shipping_cost'] = $shipping_cost;
 
                   if( empty($cart['chosen_shipping']) ) $cart['chosen_shipping'] = [];
                   
@@ -695,7 +697,7 @@ function fn_amazon_payment_services_get_configuration_fields(){
          'cc_mada_bins' => [
             'label'=> __('aps_mada_bins'),
             'type' => 'textarea',
-            'default' => '440647|440795|446404|457865|968208|457997|474491|636120|417633|468540|468541|468542|468543|968201|446393|409201|458456|484783|462220|455708|410621|455036|486094|486095|486096|504300|440533|489318|489319|445564|968211|410685|406996|432328|428671|428672|428673|968206|446672|543357|434107|407197|407395|412565|431361|604906|521076|529415|535825|543085|524130|554180|549760|968209|524514|529741|537767|535989|536023|513213|520058|558563|588982|589005|531095|530906|532013|968204|422817|422818|422819|428331|483010|483011|483012|589206|968207|419593|439954|530060|531196|420132',
+            'default' => '|22331122|440647|440795|446404|457865|968208|457997|474491|636120|417633|468540|468541|468542|468543|968201|446393|409201|458456|484783|462220|455708|410621|455036|486094|486095|486096|504300|440533|489318|489319|445564|968211|410685|406996|432328|428671|428672|428673|968206|446672|543357|434107|407197|407395|412565|431361|604906|521076|529415|535825|543085|524130|554180|549760|968209|524514|529741|537767|535989|536023|513213|520058|558563|588982|589005|531095|530906|532013|968204|422817|422818|422819|428331|483010|483011|483012|589206|968207|419593|439954|530060|531196|420132',
             'hint' => __('aps_bins_hint',['[email]'=>'integration-ps@amazon.com']),
          ],
          'cc_show_meeza_branding' => [
@@ -875,6 +877,13 @@ function fn_amazon_payment_services_get_configuration_fields(){
             'default' => '500'
          ],
       ],
+
+       'Tabby' =>[
+           'tabby_enabled' => [
+               'label'=> __('aps_enabled'),
+               'type' => 'checkbox',
+           ],
+       ],
    ];
 
    return $list;
@@ -933,5 +942,19 @@ function fn_amazon_payment_services_uninstall(){
       }
    }
 
-   db_query("DELETE FROM ?:payment_processors WHERE processor_script = ?s OR processor_script = ?s", "aps.php","amazon_payment_services.php");
+    db_query("DELETE FROM ?:payment_processors WHERE processor_script = ?s OR processor_script = ?s", "aps.php","amazon_payment_services.php");
+}
+
+
+function formatPriceByCurrencyType($amount, $useBaseCurrency)
+{
+    $amount = floatval($amount);
+    if (!$useBaseCurrency && CART_PRIMARY_CURRENCY !== CART_SECONDARY_CURRENCY) {
+        $coefficient = (float)Registry::get('currencies.'.CART_SECONDARY_CURRENCY.'.coefficient') ?: 1;
+        if( $coefficient <= 0 ) $coefficient = 1;
+
+        $amount = $amount / $coefficient;
+    }
+
+    return number_format($amount,'2','.','');
 }

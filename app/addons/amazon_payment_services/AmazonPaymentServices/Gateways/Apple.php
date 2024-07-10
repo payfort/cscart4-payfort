@@ -68,7 +68,7 @@ class Apple extends Gateway {
 
 			$apple_url = !empty($params['apple_url']) ? trim(filter_var(urldecode($params['apple_url']),FILTER_SANITIZE_URL)) : '';
 
-			if( !empty($apple_url) && filter_var($apple_url, FILTER_VALIDATE_URL) ){
+			if( !empty($apple_url) && filter_var($apple_url, FILTER_VALIDATE_URL) && preg_match('/^https\:\/\/[^\.\/]+\.apple\.com\//', $apple_url) ) {
 
 				$production_key  =$this->getConfig('production_key');
 				
@@ -100,7 +100,7 @@ class Apple extends Gateway {
 		        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
 		        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		        
-		        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 		        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		        curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
 		        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
