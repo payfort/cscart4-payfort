@@ -607,19 +607,19 @@ function fn_amazon_payment_services_get_configuration_fields(){
       __('aps_merchant_configuration') =>[
          'merchant_identifier' => [
             'label'=> __('aps_merchant_identifier'),
-            'type' => 'text', 
+            'type' => 'password',
          ],
          'access_code' => [
             'label'=> __('aps_access_code'),
-            'type' => 'text', 
+            'type' => 'password', 
          ],
          'request_sha_phrase' => [
             'label'=> __('aps_request_sha_phrase'),
-            'type' => 'text', 
+            'type' => 'password', 
          ],
          'response_sha_phrase' => [
             'label'=> __('aps_response_sha_phrase'),
-            'type' => 'text', 
+            'type' => 'password', 
          ],
       ],
       
