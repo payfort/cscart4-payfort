@@ -37,6 +37,7 @@ CSCart add-on user guide is included in the repository [here](/CSCART%20Add-on%2
 
 | Plugin Version | Release Notes |
 | :---: | :--- |
+| 2.1.2 |   * Fix - Apple URL validation and signature fixes |
 | 2.1.1 |   * Fix - Use password input type to hide sensitive information |
 | 2.1.0 |   * New - Tabby payment option is added<br />* Fix - ApplePay currency will use plugin config Base/Front currency |
 | 2.0.3 |   * Fix - Refund status set to Cancelled after receiving notification<br />* Fix - Hosted installments exception fix for empty fields |

@@ -255,7 +255,7 @@ class Gateway{
 			$details = [ 'gateway' => $this->title ];
 
 		$order_status = 'F';
-		$validSignature = true;
+		$validSignature = false;
 			
 		$status = isset($post['status']) ? trim($post['status']) : '';
 		$response_code = isset($post['response_code']) ? trim($post['response_code']) : '';
@@ -264,7 +264,9 @@ class Gateway{
 		if( empty($response_code) )
 			$message = __("aps_gateway_no_valid_response");
 		else {
-			if( isset($post['signature']) && trim($post['signature']) != $this->generateSignature($post,true) ){
+			if( !empty($post['signature']) && hash_equals($this->generateSignature($post,true), trim($post['signature'])) ){
+				$validSignature = true;
+			} else {
 				$validSignature = false;
 				$message = __("aps_payment_mismatch_signature");
 			}
@@ -293,7 +295,11 @@ class Gateway{
 
 		$message = trim(trim($message),'.');
 
-		if ( in_array($resType,['PAYMENT_SUCCESS','CAPTURE_SUCCESS','AUTHORIZATION_SUCCESS']) ){
+		if ( !$validSignature ){
+			$order_status = 'F';
+			$res['error'] = $message;
+
+		} elseif ( in_array($resType,['PAYMENT_SUCCESS','CAPTURE_SUCCESS','AUTHORIZATION_SUCCESS']) ){
 			$order_status = 'P';
 			//on_success;
 
