@@ -23,7 +23,8 @@ class APS {
 			'knet' => __("aps_knet"),
 			'visa' => __("aps_visa_checkout"),
 			'installments' => __("aps_installments"),
-			'valu' => __("aps_valu")
+			'valu' => __("aps_valu"),
+            'tabby' => __("aps_tabby")
 		];
 	}
 

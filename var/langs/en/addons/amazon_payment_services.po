@@ -13,8 +13,8 @@ msgid "Localized language name"
 msgstr "English"
 
 msgctxt "Addons::description::amazon_payment_services"
-msgid "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu"
-msgstr "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu"
+msgid "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu, Tabby"
+msgstr "Amazon payment services, Credit/ Debit card, Installments, Apple Pay, Visa Checkout, KNET, NAPS, Valu, Tabby"
 
 msgctxt "Languages::amazon_payment_services"
 msgid "Amazon Payment Services"
@@ -35,6 +35,10 @@ msgstr "Fort ID"
 msgctxt "Languages::knet_ref_number"
 msgid "KNET Ref Number"
 msgstr "KNET Ref Number"
+
+msgctxt "Languages::tabby_ref_number"
+msgid "Tabby Ref Number"
+msgstr "Tabby Ref Number"
 
 msgctxt "Languages::third_party_transaction_number"
 msgid "Third Party Transaction Number"
@@ -411,6 +415,10 @@ msgstr "Apple Pay"
 msgctxt "Languages::aps_knet"
 msgid "KNET"
 msgstr "KNET"
+
+msgctxt "Languages::aps_tabby"
+msgid "Pay in 4. No interest, no fees."
+msgstr "Pay in 4. No interest, no fees."
 
 msgctxt "Languages::aps_naps"
 msgid "NAPS"

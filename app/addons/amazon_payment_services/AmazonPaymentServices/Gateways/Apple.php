@@ -7,6 +7,51 @@ class Apple extends Gateway {
 	public $userAgent = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0';
 	private $_merchant_identifier;
 
+	/**
+	 * Allowlist of Apple Pay merchant validation domains.
+	 * @see https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server#3179109
+	 */
+	private static $allowedApplePayDomains = [
+		'apple-pay-gateway.apple.com',
+		'cn-apple-pay-gateway.apple.com',
+		'apple-pay-gateway-nc-pod1.apple.com',
+		'apple-pay-gateway-nc-pod2.apple.com',
+		'apple-pay-gateway-nc-pod3.apple.com',
+		'apple-pay-gateway-nc-pod4.apple.com',
+		'apple-pay-gateway-nc-pod5.apple.com',
+		'apple-pay-gateway-pr-pod1.apple.com',
+		'apple-pay-gateway-pr-pod2.apple.com',
+		'apple-pay-gateway-pr-pod3.apple.com',
+		'apple-pay-gateway-pr-pod4.apple.com',
+		'apple-pay-gateway-pr-pod5.apple.com',
+		'apple-pay-gateway-nc-pod1-dr.apple.com',
+		'apple-pay-gateway-nc-pod2-dr.apple.com',
+		'apple-pay-gateway-nc-pod3-dr.apple.com',
+		'apple-pay-gateway-nc-pod4-dr.apple.com',
+		'apple-pay-gateway-nc-pod5-dr.apple.com',
+		'apple-pay-gateway-pr-pod1-dr.apple.com',
+		'apple-pay-gateway-pr-pod2-dr.apple.com',
+		'apple-pay-gateway-pr-pod3-dr.apple.com',
+		'apple-pay-gateway-pr-pod4-dr.apple.com',
+		'apple-pay-gateway-pr-pod5-dr.apple.com',
+	];
+
+	/**
+	 * Validate that a URL is a legitimate Apple Pay merchant validation endpoint.
+	 * Only HTTPS URLs pointing to known Apple domains are accepted.
+	 */
+	private function isValidApplePayUrl($url){
+		$parsed = parse_url($url);
+		if( empty($parsed['scheme']) || strtolower($parsed['scheme']) !== 'https' ){
+			return false;
+		}
+		if( empty($parsed['host']) ){
+			return false;
+		}
+		$host = strtolower($parsed['host']);
+		return in_array($host, self::$allowedApplePayDomains, true);
+	}
+
 	public function getApMerchantIdentifier(){
 
 		if( !isset($this->_merchant_identifier) ){	
@@ -68,7 +113,7 @@ class Apple extends Gateway {
 
 			$apple_url = !empty($params['apple_url']) ? trim(filter_var(urldecode($params['apple_url']),FILTER_SANITIZE_URL)) : '';
 
-			if( !empty($apple_url) && filter_var($apple_url, FILTER_VALIDATE_URL) ){
+			if( !empty($apple_url) && filter_var($apple_url, FILTER_VALIDATE_URL) && $this->isValidApplePayUrl($apple_url) ){
 
 				$production_key  =$this->getConfig('production_key');
 				
@@ -100,7 +145,7 @@ class Apple extends Gateway {
 		        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
 		        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		        
-		        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 		        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		        curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
 		        curl_setopt($ch, CURLOPT_TIMEOUT, 60);

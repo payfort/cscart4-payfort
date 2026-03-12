@@ -1,5 +1,11 @@
 {$cart = $smarty.session.cart}
-{$currency = $smarty.const.CART_SECONDARY_CURRENCY}
+{$useBaseCurrency = $gateway->getConfig('currency')}
+
+{if $useBaseCurrency}
+    {$currency = $smarty.const.CART_PRIMARY_CURRENCY}
+{else}
+    {$currency = $smarty.const.CART_SECONDARY_CURRENCY}
+{/if}
 
 {$cart_subtotal = $gateway->formatPrice($cart.subtotal,$currency)|number_format:2:'.':''}
 {$shipping_cost = $gateway->formatPrice($cart.shipping_cost,$currency)|number_format:2:'.':''}

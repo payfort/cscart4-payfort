@@ -9,8 +9,12 @@
 		            {if !empty($gateway.object->logos)}
 		            <span class="aps_logos">
 		            	{foreach from=$gateway.object->logos item="_logo"}
-		            		<img src="{$config.current_location}/design/themes/responsive/templates/addons/amazon_payment_services/images/{$_logo}" height="19" />
-		            	{/foreach}
+							{if $_logo eq 'tabby-logo.png'}
+								<img src="{$config.current_location}/design/themes/responsive/templates/addons/amazon_payment_services/images/{$_logo}" style="width: 45px;" height="auto" />
+                            {else}
+                                <img src="{$config.current_location}/design/themes/responsive/templates/addons/amazon_payment_services/images/{$_logo}" height="19" />
+							{/if}
+						{/foreach}
 		            </span>
 		            {/if}
 		        </label>

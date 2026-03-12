@@ -255,7 +255,7 @@ class Gateway{
 			$details = [ 'gateway' => $this->title ];
 
 		$order_status = 'F';
-		$validSignature = true;
+		$validSignature = false;
 			
 		$status = isset($post['status']) ? trim($post['status']) : '';
 		$response_code = isset($post['response_code']) ? trim($post['response_code']) : '';
@@ -264,7 +264,9 @@ class Gateway{
 		if( empty($response_code) )
 			$message = __("aps_gateway_no_valid_response");
 		else {
-			if( isset($post['signature']) && trim($post['signature']) != $this->generateSignature($post,true) ){
+			if( !empty($post['signature']) && hash_equals($this->generateSignature($post,true), trim($post['signature'])) ){
+				$validSignature = true;
+			} else {
 				$validSignature = false;
 				$message = __("aps_payment_mismatch_signature");
 			}
@@ -293,7 +295,11 @@ class Gateway{
 
 		$message = trim(trim($message),'.');
 
-		if ( in_array($resType,['PAYMENT_SUCCESS','CAPTURE_SUCCESS','AUTHORIZATION_SUCCESS']) ){
+		if ( !$validSignature ){
+			$order_status = 'F';
+			$res['error'] = $message;
+
+		} elseif ( in_array($resType,['PAYMENT_SUCCESS','CAPTURE_SUCCESS','AUTHORIZATION_SUCCESS']) ){
 			$order_status = 'P';
 			//on_success;
 
@@ -357,6 +363,9 @@ class Gateway{
 
 		if( !empty($post['knet_ref_number']) )
 			$details['knet_ref_number'] = $post['knet_ref_number'];
+
+        if( !empty($post['tabby_ref_number']) )
+            $details['tabby_ref_number'] = $post['tabby_ref_number'];
 
 		if( !empty($post['third_party_transaction_number']) )
 			$details['third_party_transaction_number'] = $post['third_party_transaction_number'];
@@ -629,6 +638,14 @@ class Gateway{
             'language' => $this->getLanguage(),
         ];
 
+        if ($this->type === 'tabby') {
+            if (empty($this->customer_info['phone_number'])) {
+                $res['error'] = 'Please fill phone number to continue with payment';
+                $res['success'] = false;
+                return $res;
+            }
+        }
+
         if( $this->getReturnUrl() )
             $params['return_url'] = $this->getReturnUrl();  
 
@@ -838,6 +855,9 @@ class Gateway{
 
 			if( !empty($resp['knet_ref_number']) )
 				$details['knet_ref_number'] = $resp['knet_ref_number'];
+
+            if( !empty($resp['tabby_ref_number']) )
+                $details['tabby_ref_number'] = $resp['tabby_ref_number'];
 
 			if( !empty($resp['third_party_transaction_number']) )
 				$details['third_party_transaction_number'] = $resp['third_party_transaction_number'];

@@ -2,7 +2,7 @@
 
 	if( $('#litecheckout_payments_form').length )
 		$('#litecheckout_payments_form')[0].reset();
-
+		
 	function apsShowHideLoading(hide,txt){
 		txt = txt.trim().replace('...','');
 		if( hide)
@@ -96,6 +96,7 @@
 	});
 
 	$(_.doc).on("click",".aps_gateways_list .gt-label input",function(){
+		$.ceEvent('trigger', 'ce.formInit', $(this));
 		if( $(this).hasClass('pf_active') ) return false;
 		$(".aps_gateways_list .pf_active").removeClass('pf_active');
 		$(this).addClass('pf_active');
@@ -107,6 +108,13 @@
 			_obj.find(".fld_dsbl").prop('disabled',true);
 			_obj.find(".fld_dsbl3").prop('disabled',true);
 		}
+	});
+
+
+	$(_.doc).on("change",function(){
+		setTimeout(function(){
+			$.ceEvent('trigger', 'ce.formInit', $(this));
+		},1000);
 	});
 	
 	var verifyRegx = {  
@@ -224,7 +232,7 @@
 							_list.push('<div class="item-tenure active" data-gateway="cc" data-plan_code="FULL"><p class="tenure" style="padding-top: 15px;">Proceed with</p><p class="emi" style="padding-bottom: 16px;">full amount</p></div>');
 						}
 						$.each(_details.plans,function(idx,pln){
-							_list.push('<div class="item-tenure" data-gateway="'+(_isLinked ? 'cc' : 'installments')+'" data-plan_code="'+pln.code+'"><p class="tenure">'+pln.noi+' '+_bip.data('textMonths')+'</p> <p class="emi"><strong>'+pln.amount+'</strong> '+_bip.data('currency')+'/'+_bip.data('textMonth')+'</p> <p class="rate"><a>'+pln.fees+'% '+_bip.data('textInterest')+'</a></p></div>');
+							_list.push('<div class="item-tenure" data-gateway="'+(_isLinked ? 'cc' : 'installments')+'" data-plan_code="'+pln.code+'"><p class="tenure">'+pln.noi+' '+_bip.data('textMonths')+'</p> <p class="emi"><strong>'+pln.amount+'</strong> '+_bip.data('currency')+'/'+_bip.data('textMonth')+'</p> <p class="rate"><a>'+pln.fees+'</a></p></div>');
 						});
 
 						renderItemsSlider(_bip.find('.list_plans'),_list);	
@@ -394,5 +402,185 @@
 	    });
 	    return o;
 	}
+
+
+
+	$.ceEvent('on', 'ce.formInit', function(ele) {
+ 
+        var isChromeOnOldAndroid = function() {
+            var ua = navigator.userAgent;
+            return (/Android/.test(ua) && /Chrome/.test(ua));
+        };
+		
+        var ccFormId = $('.aps_gateways_list .gt-label input:checked').val();
+        
+        var icons           = $('.cc-icons_' + ccFormId + ' li');
+        
+        var ccNumber        = $(".cc-number_" + ccFormId);
+
+        if(!ccNumber.length)
+            return;
+
+        var ccNumberInput   = $("#" + ccNumber.attr("for"));
+        
+        var ccCv2           = $(".cc-cvv2_" + ccFormId);
+        var ccCv2Input      = $("#" + ccCv2.attr("for"));
+        
+        var ccMonth         = $(".cc-date_" + ccFormId);
+        var ccMonthInput    = $("#" + ccMonth.attr("for"));
+        
+        var ccYear          = $(".cc-year_" + ccFormId);
+        var ccYearInput     = $("#" + ccYear.attr("for"));
+        
+        if(_.isTouch === false && jQuery.isEmptyObject(ccNumberInput.data("_inputmask")) == true) {
+            
+            if (!isChromeOnOldAndroid()) {
+                ccNumberInput.inputmask("9999 9999 9999 9[9][9][9]", {
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+            }
+
+            if(!ccNumberInput.length)
+                return;
+
+            $.ceFormValidator('registerValidator', {
+                class_name: 'cc-number_' + ccFormId,
+                message: '',
+                func: function(id) {
+					var ele = $("#"+id);
+					if (!ele.val().length)
+						return false;   
+                    return isChromeOnOldAndroid() || ele.inputmask("isComplete");
+                }
+            });
+
+            if (!isChromeOnOldAndroid()) {
+                ccCv2Input.inputmask("999[9]", {
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+            }
+
+            $.ceFormValidator('registerValidator', {
+                class_name: 'cc-cvv2_' + ccFormId,
+                message: '{__("error_validator_ccv")|escape:javascript}',
+                func: function(id) {
+					var ccCv2Input = $("#"+id);
+					var formId = id.split('_').pop();
+					var ccNumberInput = $('#credit_card_number_'+formId);
+                    if( ccCv2Input.val().trim().length < ccCv2Input.attr('maxlength') )
+                        return false; 
+                    else
+                        return isChromeOnOldAndroid() || ccNumberInput.inputmask("isComplete");
+                }
+            });
+            
+            if (!isChromeOnOldAndroid()) {
+                ccMonthInput.inputmask("99", {
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+
+                ccYearInput.inputmask("99", {
+                    placeholder: '',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+            }
+
+            $.ceFormValidator('registerValidator', {
+                class_name: 'cc-date_' + ccFormId,
+                message: '',
+                func: function(id){
+					ccMonthInput = $("#"+id);
+					var formId = id.split('_').pop();
+                    _mn = ccMonthInput.val().trim();
+					var ccYearInput = $('#credit_card_year_'+formId);
+                    _yr = ccYearInput.val().trim();
+                    _my = '20'+_yr+_mn;
+
+                    _cmn= (new Date).getMonth()+1;
+                    if( _cmn < 10 ) _cmn = "0"+_cmn;
+                    _cmy = (new Date).getFullYear()+''+_cmn;
+                    
+                    if( parseInt(_mn) > 12 || _mn.length < 2 || _yr.length < 2 || _my < _cmy)
+                        return false;
+                    else
+                        return isChromeOnOldAndroid() || (ccYearInput.inputmask("isComplete") && ccMonthInput.inputmask("isComplete"));
+                }
+            });
+
+            $.ceFormValidator('registerValidator', {
+                class_name: 'cc-year_' + ccFormId,
+                message: '',
+                func: function(id){
+					ccYearInput = $("#"+id);
+					var formId = id.split('_').pop();
+					var ccMonthInput = $('#credit_card_month_'+formId);
+                    _mn = ccMonthInput.val().trim();
+                    _yr = ccYearInput.val().trim();
+                    _my = '20'+_yr+_mn;
+
+                    _cmn= (new Date).getMonth()+1;
+                    if( _cmn < 10 ) _cmn = "0"+_cmn;
+                    _cmy = (new Date).getFullYear()+''+_cmn;
+                    
+                    if( parseInt(_mn) > 12 || _mn.length < 2 || _yr.length < 2 || _my < _cmy)
+                        return false;
+                    else
+                        return isChromeOnOldAndroid() || (ccYearInput.inputmask("isComplete") && ccMonthInput.inputmask("isComplete"));
+                }
+            });
+        }
+
+        if (ccNumber.length && ccNumberInput.length) {
+            ccNumberInput.validatePFCreditCard(function (result) {
+                icons.removeClass('active');
+                
+                ccv2MaxLenth = 3;
+                                                   
+                if (result.card_type) {
+                    
+                    if( result.card_type.inputMask )
+                        ccNumberInput.inputmask(result.card_type.inputMask, { 
+                            placeholder: '',                     
+                            showMaskOnHover: false,
+                            showMaskOnFocus: false 
+                        });
+
+                    if( result.length_valid ) 
+                        ccNumberInput.addClass('is-valid');
+                    else
+                        ccNumberInput.removeClass('is-valid');
+                        
+                    icons.filter(' .cm-cc-' + result.card_type.name).addClass('active');
+                    if (['visa_electron', 'maestro', 'laser'].indexOf(result.card_type.name) != -1)
+                        ccCv2.removeClass("cm-required");
+                    else 
+                        ccCv2.addClass("cm-required");
+                    
+                    if( ['amex'].indexOf(result.card_type.name) != -1 )  
+                        ccv2MaxLenth = 4;
+                }
+
+                if (!result.length_valid) {
+                    ccNumberInput.removeClass('is-valid');
+                }
+                
+                ccCv2Input.attr('maxlength',ccv2MaxLenth);
+                ccCv2Val = ccCv2Input.val().trim();
+
+                if( ccCv2Val != '' && ccCv2Val > ccv2MaxLenth) 
+                    ccCv2Input.val(ccCv2Val.slice(0,ccv2MaxLenth));
+            });
+        }
+
+		loadedValidation = true;
+    });
+
 
 })(Tygh, Tygh.$);

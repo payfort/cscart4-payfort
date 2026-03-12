@@ -209,14 +209,16 @@ if( $mode == 'applepay_checkout'){
 			if( empty($cart['total']) )
 				$error = "Unable to add product to cart";
 
-			else {
+            else {
+                $useBaseCurrency = isset($processor_params['currency']) && $processor_params['currency'] == 'B';
 
-				$currency = CART_SECONDARY_CURRENCY;
-				$cart_subtotal = number_format($cart['subtotal'],2,'.','');
-				$shipping_cost = number_format($cart['shipping_cost'],2,'.','');
-				$tax_subtotal = number_format($cart['tax_subtotal'],2,'.','');
-				$cart_total = number_format($cart['total'],2,'.','');
-				$discount = number_format($cart['discount'],2,'.','');
+                $currency = $useBaseCurrency ? CART_PRIMARY_CURRENCY : CART_SECONDARY_CURRENCY;
+
+                $cart_subtotal = formatPriceByCurrencyType($cart['subtotal'], $useBaseCurrency);
+                $shipping_cost = formatPriceByCurrencyType($cart['shipping_cost'], $useBaseCurrency);
+                $tax_subtotal = formatPriceByCurrencyType($cart['tax_subtotal'], $useBaseCurrency);
+                $cart_total = formatPriceByCurrencyType($cart['total'], $useBaseCurrency);
+                $discount = formatPriceByCurrencyType($cart['discount'], $useBaseCurrency);
 
 				$extra['running_total'] = $cart_subtotal+$tax_subtotal-$discount;
 				$extra['shippings'] = [];
@@ -264,12 +266,25 @@ if( $mode == 'applepay_checkout'){
 
 	}
 
-	header("Content-type: application/json");
-	echo json_encode([
-		'success'=> !$error,
-		'error'	 => $error,
-		'data'   => $data,
-		'extra'  => $extra,
-	]);
-	exit;
+    header("Content-type: application/json");
+    echo json_encode([
+        'success'=> !$error,
+        'error'	 => $error,
+        'data'   => $data,
+        'extra'  => $extra,
+    ]);
+    exit;
+}
+
+function formatPriceByCurrencyType($amount, $useBaseCurrency)
+{
+    $amount = floatval($amount);
+    if (!$useBaseCurrency && CART_PRIMARY_CURRENCY !== CART_SECONDARY_CURRENCY) {
+        $coefficient = (float)Registry::get('currencies.'.CART_SECONDARY_CURRENCY.'.coefficient') ?: 1;
+        if( $coefficient <= 0 ) $coefficient = 1;
+
+        $amount = $amount / $coefficient;
+    }
+
+    return number_format($amount,'2','.','');
 }

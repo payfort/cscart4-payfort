@@ -67,6 +67,9 @@ Follow the below instruction to access configuration page of APS CS-Cart add-on:
 
 | Plugin Version | Release Notes |
 | :---: | :--- |
+| 2.1.2 |   * Fix - Apple URL validation and signature fixes |
+| 2.1.1 |   * Fix - Use password input type to hide sensitive information |
+| 2.1.0 |   * New - Tabby payment option is added<br />* Fix - ApplePay currency will use plugin config Base/Front currency |
 | 2.0.3 |   * Fix - Refund status set to Cancelled after receiving notification<br />* Fix - Hosted installments exception fix for empty fields |
 | 2.0.2 |   * Fix - Session signout after redirection<br />* Fix - Curl SSL verify host |
 | 2.0.1 |   * Fix - PHP 8 compatibility |

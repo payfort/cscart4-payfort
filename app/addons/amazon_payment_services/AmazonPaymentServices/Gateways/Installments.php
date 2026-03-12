@@ -123,10 +123,18 @@ class Installments extends Gateway {
 
 		if( $this->action == 'get_installments' ){
 
+			$is_token = false;
 			$params['currency'] = CART_SECONDARY_CURRENCY;
 			if( isset($params['currency']) )
 				$params['amount'] = $this->formatPrice($this->getAmount()/100,$params['currency'])*100;
-		
+
+			if ( isset($params['token_name']) && !empty($params['token_name']) ) {
+				$is_token = true;
+				$token_name = $params['token_name'];
+			} else {
+				$card_bin = substr(trim(str_replace(' ','',$params['card_number'])),0,8);	
+			}
+
 			$params = [
 				'query_command'       => 'GET_INSTALLMENTS_PLANS',
 				'merchant_identifier' => $params['merchant_identifier'],
@@ -135,6 +143,13 @@ class Installments extends Gateway {
 				'amount'              => trim($params['amount']),
 				'currency'            => $params['currency'],
 			];
+
+			if ($is_token){
+				$params['token_name'] = $token_name;
+			} else {
+				$params['card_bin'] = $card_bin;
+			}
+
 
 		} else {
 
@@ -257,31 +272,32 @@ class Installments extends Gateway {
 
 		$lang_code = $lang_code == 'ar' ? 'ar' : 'en';
 		foreach($installment_details as $detail){
+			$banking_system = $detail['banking_system'];
+			$interest_text  = 'Non Islamic' === $banking_system ? ('Interest') : ('Profit Rate');
+				
+			$plans = [];
 			
-			if( in_array($card_bin, array_column($detail['bins'],'bin') ) ){
-				
-				$plans = [];
-				
-				foreach($detail['plan_details'] as $pln){
-					$plans[] = [
-						'code' => trim($pln['plan_code']),
-						'fees' => floatval($pln['fees_amount']/100),
-						'noi' => intval($pln['number_of_installment']),
-						'amount' => round($pln['amountPerMonth'],2),
-					];
-				}
-
-				$list[] = [
-					'issuer_code' => trim($detail['issuer_code']),
-					'issuer_name' => trim(isset($detail['issuer_name_'.$lang_code]) ? $detail['issuer_name_'.$lang_code] : $detail['issuer_name_en']),
-					'issuer_logo' => trim(isset($detail['issuer_logo_'.$lang_code]) ? $detail['issuer_logo_'.$lang_code] : $detail['issuer_logo_en']),
-					'confirmation_message' => trim(isset($detail['confirmation_message_'.$lang_code]) ? $detail['confirmation_message_'.$lang_code] : $detail['confirmation_message_en']),
-					'fees_message' => trim(isset($detail['processing_fees_message_'.$lang_code]) ? $detail['processing_fees_message_'.$lang_code] : $detail['processing_fees_message_en']),
-					'disclaimer_message' => trim(isset($detail['disclaimer_message_'.$lang_code]) ? $detail['disclaimer_message_'.$lang_code] : $detail['disclaimer_message_en']),
-					'terms_and_condition' => trim(isset($detail['terms_and_condition'.$lang_code]) ? $detail['terms_and_condition'.$lang_code] : $detail['terms_and_condition_en']),
-					'plans' => $plans,
+			foreach($detail['plan_details'] as $pln){
+				$interest      = floatval($pln['fee_display_value']/100);
+				$interest_info = $interest . ( 'Percentage' === $pln['fees_type'] ? '%' : '' ) . ' ' . $interest_text;
+				$plans[] = [
+					'code' => trim($pln['plan_code']),
+					'fees' => $interest_info,
+					'noi' => intval($pln['number_of_installment']),
+					'amount' => round($pln['amountPerMonth'],2),
 				];
-		  	}
+			}
+
+			$list[] = [
+				'issuer_code' => trim($detail['issuer_code']),
+				'issuer_name' => trim(isset($detail['issuer_name_'.$lang_code]) ? $detail['issuer_name_'.$lang_code] : $detail['issuer_name_en']),
+				'issuer_logo' => trim(isset($detail['issuer_logo_'.$lang_code]) ? $detail['issuer_logo_'.$lang_code] : $detail['issuer_logo_en']),
+				'confirmation_message' => trim(isset($detail['confirmation_message_'.$lang_code]) ? $detail['confirmation_message_'.$lang_code] : $detail['confirmation_message_en']),
+				'fees_message' => trim(isset($detail['processing_fees_message_'.$lang_code]) ? $detail['processing_fees_message_'.$lang_code] : $detail['processing_fees_message_en']),
+				'disclaimer_message' => trim(isset($detail['disclaimer_message_'.$lang_code]) ? $detail['disclaimer_message_'.$lang_code] : $detail['disclaimer_message_en']),
+				'terms_and_condition' => trim(isset($detail['terms_and_condition'.$lang_code]) ? $detail['terms_and_condition'.$lang_code] : $detail['terms_and_condition_en']),
+				'plans' => $plans,
+			];
 		}
 
 		return $list;
