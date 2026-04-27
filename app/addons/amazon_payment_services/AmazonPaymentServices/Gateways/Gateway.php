@@ -757,6 +757,11 @@ class Gateway{
 		}
 
 		$sha_phase = trim( $verify ? $this->config['response_sha_phrase'] : $this->config['request_sha_phrase'] ); 
+
+		if (empty($sha_phase)) {
+			return '##INVALID_EMPTY_SHA_PHRASE##';
+		}
+
 		$shaString =  $sha_phase . $shaString . $sha_phase;
 		$sha_type = trim($this->config['sha_type']);
 		

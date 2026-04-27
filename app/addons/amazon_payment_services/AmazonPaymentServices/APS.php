@@ -78,8 +78,16 @@ class APS {
 
 		foreach( $this->config as $key => $value){
 			if( strpos($key, $type.'_') === 0 || in_array($key,$req_params) ){
-				if( strpos($key, $type.'_') === 0 )
-					$key = str_replace('#'.$type.'_','','#'.$key);
+				if( strpos($key, $type.'_') === 0 ){
+					$stripped_key = str_replace('#'.$type.'_','','#'.$key);
+
+					$trimmed_value = is_array($value) ? $value : trim($value);
+					if (in_array($stripped_key, $req_params) && (is_string($trimmed_value) && $trimmed_value === '')) {
+						continue;
+					}
+
+					$key = $stripped_key;
+				}
 				$params[$key] = is_array($value) ? $value : trim($value);
 			}
 		}
