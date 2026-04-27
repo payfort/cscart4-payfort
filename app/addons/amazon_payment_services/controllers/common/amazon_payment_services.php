@@ -53,7 +53,7 @@ if( $mode == 'applepay_checkout'){
 	$error = false;
 	$data = $extra = [];
 
-	if (empty($auth['user_id']) && Registry::get('settings.Checkout.allow_anonymous_shopping')!='allow_shopping')
+	if (empty($auth['user_id']))
 		$error = "Please login to buy this product";
 
 	else {
@@ -79,9 +79,6 @@ if( $mode == 'applepay_checkout'){
 		$contact_data = filter_var($params['contact_data'],FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		$contact_data = (array)json_decode(html_entity_decode($contact_data),true);
 		$email = trim(!empty($contact_data['emailAddress']) ? $contact_data['emailAddress'] : $contact_data['emailaddress']);
-
-		if( !empty($email) && !$auth['user_id'] )
-			$auth['user_id'] = (int)db_get_field("SELECT user_id FROM ?:users WHERE email LIKE ?s",$email);
 
 		$cart['user_data'] = fn_get_user_info($auth['user_id']);
 			
