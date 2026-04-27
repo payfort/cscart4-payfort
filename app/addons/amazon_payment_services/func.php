@@ -228,11 +228,20 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
                $alreadyPaid = true;
          }
 
+         if (!empty($order_info['aps_gateway']) && $gateway !== $order_info['aps_gateway']) {
+            $error = __("aps_gateway_mismatch");
+
+            if ($mode == 'notify') {
+               echo "Error: " . $error;
+               exit;
+            }
+         }
+
          if( $alreadyPaid && $mode == 'return' ){ 
               fn_set_notification('N',__('notice'),__("aps_order_placed"));
               $redirect_url = "orders.details?order_id=".$order_id;
          
-         } else {
+         } else if (!$error) {
                
             // restore user session to use in return request if cleared by cscart
             if( $mode == 'return' )
