@@ -242,10 +242,6 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
               $redirect_url = "orders.details?order_id=".$order_id;
          
          } else if (!$error) {
-               
-            // restore user session to use in return request if cleared by cscart
-            if( $mode == 'return' )
-               fn_amazon_payment_service_handle_user_session($order_id,'R');
          
             // init APS
             $aps = new \AmazonPaymentServices\APS($order_info['payment_method']['processor_params']);
@@ -285,8 +281,11 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
                // handle return response from payfort
                $res = $gateway->processResponse();
 
-               if( $res['success'] && $mode == 'return' )
+               // restore user session only AFTER successful signature verification
+               if( $res['success'] && $mode == 'return' ){
+                  fn_amazon_payment_service_handle_user_session($order_id,'R');
                   fn_amazon_payment_service_handle_user_session($order_id,'D');
+               }
 
                if( $gateway->isJson )
                   $_REQUEST['aps_iframe_redirect'] = true;
@@ -580,7 +579,7 @@ function fn_amazon_payment_service_handle_user_session($order_id,$action){
       $dir_path = DIR_ROOT.'/var/cache/user_data';
 
       if( !is_dir($dir_path) )
-         mkdir($dir_path,0777,true);
+         mkdir($dir_path,0750,true);
 
       $cache_file = $dir_path.'/'.$order_id.'.json';
 
