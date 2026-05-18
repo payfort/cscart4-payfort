@@ -148,6 +148,18 @@ msgctxt "Languages::aps_embedded_hosted_checkout"
 msgid "Embedded Hosted Checkout"
 msgstr "Embedded Hosted Checkout"
 
+msgctxt "Languages::aps_show_jaywan_branding"
+msgid "Show Jaywan Branding"
+msgstr "Show Jaywan Branding"
+
+msgctxt "Languages::aps_show_jaywan_branding_during_checkout"
+msgid "Show Jaywan branding during checkout"
+msgstr "Show Jaywan branding during checkout"
+
+msgctxt "Languages::aps_jaywan_bins"
+msgid "Jaywan Bins"
+msgstr "Jaywan Bins"
+
 msgctxt "Languages::aps_show_mada_branding"
 msgid "Show mada Branding "
 msgstr "Show mada Branding"
