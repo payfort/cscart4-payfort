@@ -241,6 +241,11 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
               fn_set_notification('N',__('notice'),__("aps_order_placed"));
               $redirect_url = "orders.details?order_id=".$order_id;
          
+         } else if( $alreadyPaid && $mode == 'notify' ){
+              // Already paid — do not allow notify to change status
+              echo 'NOTIFIED';
+              exit;
+
          } else if (!$error) {
          
             // init APS
@@ -292,13 +297,18 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
 
                if( $mode == 'notify' ){
 
-                  // update payment on notifiy
-                  fn_update_order_payment_info($order_id, $res['details']);
+                  // Only update order if signature validation passed
+                  if( $res['success'] ){
+                     fn_update_order_payment_info($order_id, $res['details']);
 
-                  if( !empty($res['details']['order_status']) ) 
-                     fn_change_order_status($order_id, $res['details']['order_status']);
+                     if( !empty($res['details']['order_status']) ) 
+                        fn_change_order_status($order_id, $res['details']['order_status']);
                      
-                  echo 'NOTIFIED';
+                     echo 'NOTIFIED';
+                  } else {
+                     // Signature invalid — reject and do NOT modify order
+                     echo 'Error: ' . ($res['error'] ?: 'Invalid signature');
+                  }
 
                } else {
 
