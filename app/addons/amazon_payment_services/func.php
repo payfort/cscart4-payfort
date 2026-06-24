@@ -697,6 +697,17 @@ function fn_amazon_payment_services_get_configuration_fields(){
             ],
             'default' => 'standard_checkout',
          ],
+         'cc_show_jaywan_branding' => [
+            'label'=> __('aps_show_jaywan_branding'),
+            'type' => 'checkbox',
+            'hint' => __('aps_show_jaywan_branding_during_checkout'),
+         ],
+         'cc_jaywan_bins' => [
+            'label'=> __('aps_jaywan_bins'),
+            'type' => 'textarea',
+            'default' => '669010|669009|978450',
+            'hint' => __('aps_bins_hint',['[email]'=>'integration-ps@amazon.com']),
+         ],
          'cc_show_mada_branding' => [
             'label'=> __('aps_show_mada_branding'),
             'type' => 'checkbox',

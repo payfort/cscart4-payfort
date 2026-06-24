@@ -466,11 +466,14 @@ class Gateway{
 		$card_number = trim(str_replace('*','0',$card_number));
 		
 		$card_number = trim($card_number);
+		$jaywan_bins = $this->getConfig('jaywan_bins');
 		$mada_bins = $this->getConfig('mada_bins');
 		$meeza_bins = $this->getConfig('meeza_bins');
 		
 		$card_type = '';
-		if( !empty($mada_bins) && preg_match( '/^'.$mada_bins.'/', $card_number ) ) 
+		if( !empty($jaywan_bins) && preg_match( '/^'.$jaywan_bins.'/', $card_number ) )
+			$card_type = 'JAYWAN';
+		else if( !empty($mada_bins) && preg_match( '/^'.$mada_bins.'/', $card_number ) )
 			$card_type = 'MADA';
 		else if( !empty($meeza_bins) && preg_match( '/^'.$meeza_bins.'/', $card_number ) )
 			$card_type = 'MEEZA';

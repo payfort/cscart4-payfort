@@ -93,6 +93,8 @@ class APS {
 		}
 
 		if( $type == 'installments' ){			
+			$params['show_jaywan_branding'] = trim($this->config['cc_show_jaywan_branding']);
+			$params['jaywan_bins'] = trim($this->config['cc_jaywan_bins']);
 			$params['show_mada_branding'] = trim($this->config['cc_show_mada_branding']);
 			$params['mada_bins'] = trim($this->config['cc_mada_bins']);
 			$params['show_meeza_branding'] = trim($this->config['cc_show_meeza_branding']);

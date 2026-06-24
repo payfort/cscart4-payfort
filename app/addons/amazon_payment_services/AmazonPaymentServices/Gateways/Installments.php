@@ -16,6 +16,9 @@ class Installments extends Gateway {
 		if( $this->integration_type != 'hosted_checkout' && $this->getConfig('enable_tokenization') == 'N' )
 			$this->template = false;
 			
+		if( $this->getConfig('show_jaywan_branding') == 'Y')
+			array_unshift($this->logos, 'jaywan-logo.png');
+
 		if( $this->integration_type == 'standard_checkout' ){
 			if( !isset($_SERVER['HTTP_SEC_FETCH_DEST']) || (isset($_SERVER['HTTP_SEC_FETCH_DEST']) && $_SERVER['HTTP_SEC_FETCH_DEST'] != 'document' ) )
 				$this->isJson = true;
@@ -132,7 +135,7 @@ class Installments extends Gateway {
 				$is_token = true;
 				$token_name = $params['token_name'];
 			} else {
-				$card_bin = substr(trim(str_replace(' ','',$params['card_number'])),0,8);	
+				$card_bin = substr(trim(str_replace(' ','',$params['card_number'])),0,8);
 			}
 
 			$params = [
@@ -216,7 +219,7 @@ class Installments extends Gateway {
 				$error = $instRes['error'];
 			else {
 
-				$card_bin = substr(trim(str_replace(' ','',$this->payment_data['card_number'])),0,6);
+				$card_bin = substr(trim(str_replace(' ','',$this->payment_data['card_number'])),0,8);
 				
 				if( !empty($instRes['installment_detail']['issuer_detail']) ){
 
