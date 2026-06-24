@@ -437,9 +437,11 @@ class Gateway{
 		$res['details'] = $details; 
 		if( !$res['error'] ) $res['success'] = true;
 		
-		if( $this->mode == 'notify' ){
-			$res['success'] = true;
-			$res['error'] = false;
+		// In notify mode, only acknowledge success if signature was valid.
+		// Do NOT override validation result — forged webhooks must be rejected.
+		if( $this->mode == 'notify' && !$validSignature ){
+			$res['success'] = false;
+			$res['error'] = $message;
 		}
 
 		return $res;
