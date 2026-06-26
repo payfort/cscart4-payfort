@@ -715,7 +715,7 @@ function fn_amazon_payment_services_get_configuration_fields(){
          'cc_jaywan_bins' => [
             'label'=> __('aps_jaywan_bins'),
             'type' => 'textarea',
-            'default' => '669010|669009|978450',
+            'default' => '669010|669009|978450|47878000|622454|650053|650483',
             'hint' => __('aps_bins_hint',['[email]'=>'integration-ps@amazon.com']),
          ],
          'cc_show_mada_branding' => [
