@@ -437,9 +437,11 @@ class Gateway{
 		$res['details'] = $details; 
 		if( !$res['error'] ) $res['success'] = true;
 		
-		if( $this->mode == 'notify' ){
-			$res['success'] = true;
-			$res['error'] = false;
+		// In notify mode, only acknowledge success if signature was valid.
+		// Do NOT override validation result — forged webhooks must be rejected.
+		if( $this->mode == 'notify' && !$validSignature ){
+			$res['success'] = false;
+			$res['error'] = $message;
 		}
 
 		return $res;
@@ -466,11 +468,14 @@ class Gateway{
 		$card_number = trim(str_replace('*','0',$card_number));
 		
 		$card_number = trim($card_number);
+		$jaywan_bins = $this->getConfig('jaywan_bins');
 		$mada_bins = $this->getConfig('mada_bins');
 		$meeza_bins = $this->getConfig('meeza_bins');
 		
 		$card_type = '';
-		if( !empty($mada_bins) && preg_match( '/^'.$mada_bins.'/', $card_number ) ) 
+		if( !empty($jaywan_bins) && preg_match( '/^'.$jaywan_bins.'/', $card_number ) )
+			$card_type = 'JAYWAN';
+		else if( !empty($mada_bins) && preg_match( '/^'.$mada_bins.'/', $card_number ) )
 			$card_type = 'MADA';
 		else if( !empty($meeza_bins) && preg_match( '/^'.$meeza_bins.'/', $card_number ) )
 			$card_type = 'MEEZA';

@@ -103,6 +103,15 @@
       }
     ];
 
+    if( $(this).data('jaywanBins') && $(this).data('jaywanBins').toString().trim() !='' ){
+      card_types.push({
+        name: 'jaywan',
+        range: $(this).data('jaywanBins').toString().split('|').join(','),
+        valid_length: [16],
+        inputMask: "9999 9999 9999 9[9][9][9]"
+      });
+    }
+
     if( $(this).data('madaBins').trim() !='' ){
       card_types.push({
         name: 'mada',

@@ -10,13 +10,14 @@
     <div class="ty-credit-card cm-cc_form_{$id_suffix}">
             <div class="ty-credit-card__control-group ty-control-group">
                 <label for="credit_card_number_{$id_suffix}" class="ty-control-group__title cm-cc-number cc-number_{$id_suffix} cm-required">{__("card_number")}</label>
-                <input{if !$is_active} disabled="disabled"{/if} size="35" type="text" id="credit_card_number_{$id_suffix}" name="payment_data[aps][{$card_id}][card_number]" value="" class="fld{if $have_tokens} fld_dsbl{/if} ty-credit-card__input cm-autocomplete-off ty-inputmask-bdi ty-credit_card_number_{$id_suffix}" data-mada-bins="{$gateway->getConfig('mada_bins')}" data-meeza-bins="{$gateway->getConfig('meeza_bins')}" />
+                <input{if !$is_active} disabled="disabled"{/if} size="35" type="text" id="credit_card_number_{$id_suffix}" name="payment_data[aps][{$card_id}][card_number]" value="" class="fld{if $have_tokens} fld_dsbl{/if} ty-credit-card__input cm-autocomplete-off ty-inputmask-bdi ty-credit_card_number_{$id_suffix}" data-jaywan-bins="{$gateway->getConfig('jaywan_bins')}" data-mada-bins="{$gateway->getConfig('mada_bins')}" data-meeza-bins="{$gateway->getConfig('meeza_bins')}" />
                 <ul class="ty-cc-icons cm-cc-icons cc-icons_{$id_suffix}">
                     <li class="ty-cc-icons__item cc-default cm-cc-default"><span class="ty-cc-icons__icon default">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-visa"><span class="ty-cc-icons__icon visa">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-visa_electron"><span class="ty-cc-icons__icon visa-electron">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-mastercard"><span class="ty-cc-icons__icon mastercard">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-amex"><span class="ty-cc-icons__icon american-express">&nbsp;</span></li>
+                    <li class="ty-cc-icons__item cm-cc-jaywan"><span class="ty-cc-icons__icon jaywan">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-mada"><span class="ty-cc-icons__icon mada">&nbsp;</span></li>
                     <li class="ty-cc-icons__item cm-cc-meeza"><span class="ty-cc-icons__icon meeza">&nbsp;</span></li>
                 </ul>

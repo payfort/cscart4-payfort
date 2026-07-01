@@ -58,6 +58,7 @@ Follow the below instruction to access configuration page of APS CS-Cart add-on:
    * valU
    * mada
    * Meeza
+   * Jaywan
    * KNET
    * NAPS
    * Apple Pay
@@ -67,6 +68,7 @@ Follow the below instruction to access configuration page of APS CS-Cart add-on:
 
 | Plugin Version | Release Notes                                                                                                                                                                                                                                                                                                                                                                                                                          |
 |:--------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     2.1.6      | * New - Jaywan card brand support added to checkout <br/> * New - Jaywan BIN detection in client-side credit card validation <br/> * New - Jaywan support for installments payment option <br/> * New - Jaywan configurable options in admin settings                                                                                                                                            |
 |     2.1.5      | * Fix - Session recovery fix.                                                                                                                                                                                                                                                                                                                                                                                                          |
 |     2.1.4      | * Fix - Apple Pay anonymous checkout disabled.                                                                                                                                                                                                                                                                                                                                                                                         |
 |     2.1.3      | * Fix - Apple URL sha phrase handling fixes                                                                                                                                                                                                                                                                                                                                                                                            |
