@@ -47,9 +47,6 @@ class Cc extends Gateway {
 				$params['command'] = 'PURCHASE';				
 		}
 
-		if( !empty($params['card_number']) && preg_match($jaywan_regex, $params['card_number']) )
-			$params['payment_option'] = 'JAYWAN';
-
 		if( $this->integration_type == 'hosted_checkout' && empty($params['token_name']) ){
 		    $params['card_number'] = !empty($params['card_number']) ? trim(str_replace(' ','',$params['card_number'])) : '';
 	    	$params['expiry_date'] = !empty($params['expiry_year']) && !empty($params['expiry_month']) ? trim($params['expiry_year'].$params['expiry_month']) : '';
