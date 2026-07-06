@@ -272,16 +272,3 @@ if( $mode == 'applepay_checkout'){
     ]);
     exit;
 }
-
-function formatPriceByCurrencyType($amount, $useBaseCurrency)
-{
-    $amount = floatval($amount);
-    if (!$useBaseCurrency && CART_PRIMARY_CURRENCY !== CART_SECONDARY_CURRENCY) {
-        $coefficient = (float)Registry::get('currencies.'.CART_SECONDARY_CURRENCY.'.coefficient') ?: 1;
-        if( $coefficient <= 0 ) $coefficient = 1;
-
-        $amount = $amount / $coefficient;
-    }
-
-    return number_format($amount,'2','.','');
-}
