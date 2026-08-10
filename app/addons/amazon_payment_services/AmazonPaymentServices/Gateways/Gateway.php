@@ -261,15 +261,21 @@ class Gateway{
 		$response_code = isset($post['response_code']) ? trim($post['response_code']) : '';
 		$message = isset($post['response_message']) ? trim($post['response_message']) : '';		
 
-		if( empty($response_code) )
+		if( empty($response_code) ){
 			$message = __("aps_gateway_no_valid_response");
-		else {
+		} else {
 			if( !empty($post['signature']) && hash_equals($this->generateSignature($post,true), trim($post['signature'])) ){
 				$validSignature = true;
 			} else {
 				$validSignature = false;
 				$message = __("aps_payment_mismatch_signature");
 			}
+		}
+
+		// Early return: no request field from an unverified body should reach $res['details']
+		if( !$validSignature ){
+			$this->log("Signature Verification Failed",['Order'=>$this->order_id,'Mode'=>$this->mode]);
+			return ['success'=>false, 'error'=>$message, 'details'=>[]];
 		}
 
 		$resType = $this->getResponeType($response_code,$status);
@@ -436,13 +442,6 @@ class Gateway{
 
 		$res['details'] = $details; 
 		if( !$res['error'] ) $res['success'] = true;
-		
-		// In notify mode, only acknowledge success if signature was valid.
-		// Do NOT override validation result — forged webhooks must be rejected.
-		if( $this->mode == 'notify' && !$validSignature ){
-			$res['success'] = false;
-			$res['error'] = $message;
-		}
 
 		return $res;
 	}
