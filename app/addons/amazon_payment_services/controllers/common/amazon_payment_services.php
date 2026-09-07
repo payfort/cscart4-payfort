@@ -16,8 +16,14 @@ setcookie(Tygh::$app['session']->getName(), Tygh::$app['session']->getId(), [
 ]);
 
 if( $mode == 'cron' ){
-	if( filter_input( INPUT_GET, 'cron_key' ) == 'aps')
+	$provided_key = (string) filter_input( INPUT_GET, 'cron_key' );
+	$expected_key = fn_amazon_payment_services_get_cron_key();
+
+	if( $expected_key !== '' && hash_equals( $expected_key, $provided_key ) ){
 		fn_amazon_payment_services_cron_handler();
+	} else {
+		header('HTTP/1.1 403 Forbidden');
+	}
 	exit;
 }
 
