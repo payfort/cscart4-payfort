@@ -539,6 +539,31 @@ function fn_amazon_payment_services_ajax_action_call($request,$cart = null){
    exit;    
 }
 
+/**
+ * Returns the per-store secret used to authenticate the public cron route.
+ *
+ * The key is stored in the APS payment's processor_params and generated
+ * lazily (once) with a cryptographically secure random value, so it is
+ * unique per deployment instead of the previously hardcoded, globally
+ * predictable value.
+ */
+function fn_amazon_payment_services_get_cron_key(){
+
+   $payment_info = db_get_row("SELECT pm.payment_id, pm.processor_params FROM ?:payments pm, ?:payment_processors pp WHERE pp.processor_id = pm.processor_id AND pp.processor_script = ?s ORDER BY pm.payment_id DESC",'aps.php');
+
+   if( empty($payment_info['payment_id']) )
+      return '';
+
+   $params = !empty($payment_info['processor_params']) ? (array) unserialize($payment_info['processor_params']) : [];
+
+   if( empty($params['cron_key']) ){
+      $params['cron_key'] = bin2hex(random_bytes(24));
+      db_query("UPDATE ?:payments SET processor_params = ?s WHERE payment_id = ?i", serialize($params), $payment_info['payment_id']);
+   }
+
+   return (string) $params['cron_key'];
+}
+
 function fn_amazon_payment_services_cron_handler(){
 
    $done = 0;
@@ -685,10 +710,17 @@ function fn_amazon_payment_services_get_configuration_fields(){
          'cron_url' => [
             'label'=> "Cronjob Url",
             'type' => 'html',
-            'html' => '<b>Use the following commands in order to run CRON job on your server (1 - we recommend):</b><br>
-               1) php '.DIR_ROOT.'/index.php --dispatch=amazon_payment_services.cron --cron_key=aps<br>
-               2) wget -q "'.fn_url('amazon_payment_services.cron?cron_key=aps','C').'"<br>
-               3) curl "'.fn_url('amazon_payment_services.cron&cron_key=aps','C').'"',
+            'html' => (function(){
+               $cron_key = fn_amazon_payment_services_get_cron_key();
+               if( $cron_key === '' )
+                  return '<b>Save this payment method first to generate a secret cron key, then reopen this page to view the CRON commands.</b>';
+               $cron_key = htmlspecialchars($cron_key, ENT_QUOTES);
+               return '<b>Use the following commands in order to run CRON job on your server (1 - we recommend):</b><br>
+               1) php '.DIR_ROOT.'/index.php --dispatch=amazon_payment_services.cron --cron_key='.$cron_key.'<br>
+               2) wget -q "'.fn_url('amazon_payment_services.cron?cron_key='.$cron_key,'C').'"<br>
+               3) curl "'.fn_url('amazon_payment_services.cron&cron_key='.$cron_key,'C').'"<br>
+               <span class="muted description">Keep this key secret. It is unique to your store.</span>';
+            })(),
          ],
       ],
       
