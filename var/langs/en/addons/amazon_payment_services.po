@@ -492,6 +492,10 @@ msgctxt "Languages::aps_payment_mismatch_signature"
 msgid "Payment signature is not matched"
 msgstr "Payment signature is not matched"
 
+msgctxt "Languages::aps_amount_mismatch"
+msgid "Payment amount or currency does not match the order"
+msgstr "Payment amount or currency does not match the order"
+
 msgctxt "Languages::aps_token_not_valid"
 msgid "Token is not valid"
 msgstr "Token is not valid"

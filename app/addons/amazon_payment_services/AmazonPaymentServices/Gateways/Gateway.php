@@ -299,6 +299,18 @@ class Gateway{
 			$resType = $this->getResponeType($response_code,$status);
 		}
 
+		if( in_array($resType,['PAYMENT_SUCCESS','AUTHORIZATION_SUCCESS']) && !$this->isExpectedPayment($post) ){
+			list($expected_amount,$expected_currency) = $this->getExpectedPayment();
+			$this->log("Amount Mismatch",[
+				'Order'    => $this->order_id,
+				'Mode'     => $this->mode,
+				'Expected' => $expected_amount.' '.$expected_currency,
+				'Received' => (isset($post['amount']) ? $post['amount'] : '').' '.(isset($post['currency']) ? $post['currency'] : ''),
+			]);
+			$resType = 'FAILED';
+			$message = __("aps_amount_mismatch");
+		}
+
 		$message = trim(trim($message),'.');
 
 		if ( !$validSignature ){
@@ -709,6 +721,22 @@ class Gateway{
 	// verify or update params by gateway classes
 	public function verifyParams($params){
 		return $params;
+	}
+    
+	public function getExpectedPayment(){
+		return [$this->getAmount(), $this->getCurrency()];
+	}
+
+	// check response amount and currency against the order
+	public function isExpectedPayment($post){
+
+		if( !isset($post['amount'],$post['currency']) || !is_numeric($post['amount']) )
+			return false;
+
+		list($amount,$currency) = $this->getExpectedPayment();
+
+		return round((float)$post['amount']) == round((float)$amount)
+			&& strtoupper(trim($post['currency'])) === strtoupper(trim($currency));
 	}
 
 	// verify or update params return from Payfort

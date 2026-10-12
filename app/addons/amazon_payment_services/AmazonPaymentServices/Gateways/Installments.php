@@ -35,6 +35,11 @@ class Installments extends Gateway {
 		return $this->active;
 	}
 
+	public function getExpectedPayment(){
+		$currency = $this->getCurrency();
+		return [$this->formatPrice($this->getAmount()/100,$currency)*100, $currency];
+	}
+
 	public function verifyResponse($response_code,$status,$resType,$response,$message){
 		
 		if( isset($response['installments']) && $response['installments'] == 'HOSTED' )

@@ -59,6 +59,10 @@ class Valu extends Gateway {
 		return $params;
 	}
 
+	public function getExpectedPayment(){
+		return [$this->formatPrice($this->getAmount()/100,'EGP')*100, 'EGP'];
+	}
+
 	public function processActions($response){
 		//01008606003
 

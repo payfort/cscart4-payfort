@@ -26,6 +26,23 @@ class Knet extends Gateway {
 		return $params;
 	}
 
+	public function getExpectedPayment(){
+
+		$currency = $this->getCurrency();
+		$amount = $this->getAmount();
+
+		if( $this->isBaseCurrency() ){
+			$currency = 'KWD';
+			$amount = $this->formatPrice($amount/100,$currency)*100;
+		}
+
+		// verifyResponse() divides by 10, but it is not applied to notify responses
+		if( $this->mode == 'notify' )
+			$amount = $amount*10;
+
+		return [$amount, $currency];
+	}
+
 	public function verifyResponse($response_code,$status,$resType,$params,$message){
 		
 		if( !empty($params['amount']) )
