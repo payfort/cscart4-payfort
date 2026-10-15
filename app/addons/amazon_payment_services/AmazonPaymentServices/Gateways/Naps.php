@@ -21,4 +21,12 @@ class Naps extends Gateway {
 
 		return $params;
 	}
+
+	public function getExpectedPayment(){
+
+		if( $this->isBaseCurrency() )
+			return [$this->formatPrice($this->getAmount()/100,'QAR')*100, 'QAR'];
+
+		return parent::getExpectedPayment();
+	}
 }
