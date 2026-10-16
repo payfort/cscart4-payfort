@@ -189,9 +189,6 @@ function fn_amazon_payment_services_check_applypay_button($page,$process = true)
 
 function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$user_id,$response){
 
-   $error = false;
-   $redirect_url = 'checkout.checkout';
-
    if( empty($order_id) && isset($response['merchant_extra1']) )
       $order_id = $response['merchant_extra1'];
 
@@ -209,6 +206,44 @@ function fn_amazon_payment_services_handle_response($mode,$order_id,$gateway,$us
          $gateway  = $order['aps_gateway'];
       }
    }
+
+   // Use the same numeric order identity as CS-Cart's database queries.
+   $order_id = (int)$order_id;
+   if ($order_id <= 0 || empty($gateway)) {
+      return fn_amazon_payment_services_handle_locked_response($mode, 0, $gateway, $user_id, $response);
+   }
+
+   // MySQL named locks coordinate all web workers sharing the store database.
+   // Include the database and table prefix to avoid locking unrelated stores.
+   $lock_name = 'aps_response_' . sha1(db_get_field("SELECT DATABASE()") . ':' . db_quote("?:orders") . ':' . $order_id);
+   if ((string)db_get_field("SELECT GET_LOCK(?s, 5)", $lock_name) !== '1') {
+      http_response_code(503);
+      header('Retry-After: 5');
+      echo 'Payment processing is busy. Please retry shortly.';
+      return;
+   }
+
+   $released = false;
+   $release = function () use ($lock_name, &$released) {
+      if (!$released) {
+         $released = true;
+         db_get_field("SELECT RELEASE_LOCK(?s)", $lock_name);
+      }
+   };
+   // CS-Cart routing and gateway 3DS handling can exit, bypassing finally.
+   register_shutdown_function($release);
+   try {
+      return fn_amazon_payment_services_handle_locked_response($mode, $order_id, $gateway, $user_id, $response);
+   } finally {
+      $release();
+   }
+}
+
+// Internal: call only through handle_response, while holding the order lock.
+function fn_amazon_payment_services_handle_locked_response($mode,$order_id,$gateway,$user_id,$response){
+
+   $error = false;
+   $redirect_url = 'checkout.checkout';
 
    if( !empty($order_id) && !empty($gateway) ){
 
