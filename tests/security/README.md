@@ -30,3 +30,18 @@ must use the same primary database connection (no routing of these SELECTs to
 replicas, no connection multiplexing while a lock is held). This serializes
 these two callback paths, not unrelated cron/admin order updates, and does not
 claim crash-safe exactly-once processing of external side effects.
+
+## 7613f9e8-5dc2-4c6f-8805-cbcea4e861d3
+
+Run `php tests/security/logger.php`. Debug logging accepts only boolean true or
+CS-Cart's explicit `Y`. Disabled logging performs no directory creation or write.
+Enabled logging retains a small allowlist of validated diagnostic fields and
+fixed event/gateway labels. Nested arrays and JSON are sanitized; arbitrary text,
+URLs, objects, unknown fields and malformed JSON are redacted. Payment request
+arrays are not modified. Recursion is bounded. New log directories use 0750.
+
+This deliberately removes raw response messages and request URLs from debug
+output. It does not erase historical logs, backups or copies in log aggregators.
+Before release, verify admin log viewing and all gateway debug modes in CS-Cart.
+Handle historical sensitive logs and credential exposure through the approved
+security/retention process; this code change does not remediate old copies.
