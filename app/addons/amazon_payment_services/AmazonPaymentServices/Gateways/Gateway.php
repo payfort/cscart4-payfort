@@ -280,6 +280,11 @@ class Gateway{
 
 		$resType = $this->getResponeType($response_code,$status);
 
+		// Validate fresh tokens before saving them or invoking installment hooks.
+		if ($resType === 'TOKENIZATION_SUCCESS' && !$this->isVerifiedOrderToken($post)) {
+			return ['success' => false, 'error' => __('aps_token_not_valid'), 'details' => []];
+		}
+
 		if( !empty($post['token_name']) && in_array($this->type,['cc','installments']) && ( (isset($post['remember_me']) && $post['remember_me'] == 'YES') || in_array($this->integration_type,['standard_checkout','redirection']) ) && in_array($resType,['PAYMENT_SUCCESS','CAPTURE_SUCCESS','AUTHORIZATION_SUCCESS','TOKENIZATION_SUCCESS']) )
 			$this->saveCardToken($post);
 
@@ -541,10 +546,11 @@ class Gateway{
 	// process card token in return request
 	public function processToken($post){
 
-		$request = $this->tokenRequest(
-			isset($post['merchant_reference']) ? $post['merchant_reference'] : '',
-			isset($post['token_name']) ? $post['token_name'] : ''
-		);
+		if (!$this->isVerifiedOrderToken($post)) {
+			return ['status' => '99', 'response_code' => '', 'response_message' => __('aps_token_not_valid')];
+		}
+		// A freshly tokenized card need not already be saved (guest / remember_me=NO).
+		$request = $this->buildTokenRequest($post['merchant_reference'], $post['token_name']);
 
 		if( $request['success'] ){			
 
@@ -559,13 +565,56 @@ class Gateway{
 
 		} else {
 			$post['response_message'] = $request['error'];
-			$post['status'] == '99';
+			$post['status'] = '99';
 		}
 
 		return $post;
 	}
 
+	// Saved tokens are authorized server-side, never by the checkout dropdown.
+	private function ownsSavedToken($token){
+		return $this->user_id > 0 && is_string($token) && trim($token) !== ''
+			&& (bool)db_get_field(
+				"SELECT card_id FROM ?:aps_card_tokens WHERE user_id = ?i AND BINARY token_name = ?s",
+				$this->user_id, trim($token)
+			);
+	}
+
+	// This exception to saved-token ownership is only for an authenticated APS
+	// tokenization response for the current order, not a browser-supplied token.
+	private function isVerifiedOrderToken($post){
+		if (!is_string($this->getConfig('response_sha_phrase')) || trim($this->getConfig('response_sha_phrase')) === ''
+			|| !is_array($post) || !isset($post['signature'], $post['token_name'], $post['merchant_reference'], $post['response_code'], $post['status'])
+			|| !is_string($post['signature']) || !is_string($post['token_name']) || trim($post['token_name']) === ''
+			|| !is_string($post['merchant_reference']) || !is_scalar($post['response_code']) || !is_scalar($post['status'])
+			|| !in_array((string)$post['response_code'], $this->responseCodes['TOKENIZATION_SUCCESS'], true)
+			|| (string)$post['status'] !== '18'
+			|| !hash_equals($this->generateSignature($post, true), trim($post['signature']))) {
+			return false;
+		}
+		$reference = isset($this->order_info['aps_reference']) ? $this->order_info['aps_reference'] : '';
+		if (!$reference || empty($this->order_id) || empty($this->order_info['order_id'])
+			|| (string)$this->order_id !== (string)$this->order_info['order_id']
+			|| !isset($this->order_info['user_id']) || (int)$this->order_info['user_id'] !== $this->user_id
+			|| !hash_equals((string)$reference, $post['merchant_reference'])
+			|| !isset($post['merchant_identifier'], $post['access_code'])
+			|| $post['merchant_identifier'] !== $this->getConfig('merchant_identifier')
+			|| $post['access_code'] !== $this->getConfig('access_code')) {
+			return false;
+		}
+		// Even a signed response must not move another customer's saved token.
+		$owner = db_get_field("SELECT user_id FROM ?:aps_card_tokens WHERE BINARY token_name = ?s", trim($post['token_name']));
+		return $owner === false || $owner === null || ($this->user_id > 0 && (int)$owner === $this->user_id);
+	}
+
 	public function tokenRequest($reference,$token){
+		if (!$this->ownsSavedToken($token)) {
+			return ['success' => false, 'error' => __('aps_token_not_valid'), 'is_redirect' => false, 'is_form' => false, 'params' => []];
+		}
+		return $this->buildTokenRequest($reference, trim($token));
+	}
+
+	private function buildTokenRequest($reference,$token){
 
 		$success = $error = false; 
 
@@ -642,6 +691,13 @@ class Gateway{
 			'is_json' => $this->isJson,
 			'is_direct' => false,
 		];
+
+		$res['params'] = [];
+		if (array_key_exists('token_name', $this->payment_data) && $this->payment_data['token_name'] !== ''
+			&& !$this->ownsSavedToken($this->payment_data['token_name'])) {
+			$res['error'] = __('aps_token_not_valid');
+			return $res;
+		}
 
 		$res['merchant_reference'] = isset($this->reference) ? trim($this->reference) : $this->generateReference($this->order_id);
 

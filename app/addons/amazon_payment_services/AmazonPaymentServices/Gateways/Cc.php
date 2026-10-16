@@ -59,6 +59,10 @@ class Cc extends Gateway {
 
 	public function processActions($response){
 
+		if (empty($response['success']) || !empty($response['error'])) {
+			return $response;
+		}
+
 		if( $this->integration_type != 'redirection' ){
 			$params = $response['params'];
 

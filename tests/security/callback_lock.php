@@ -8,6 +8,7 @@ namespace AmazonPaymentServices {
     class TestGateway {
         public $isJson = false;
         public function __call($name, $args) {}
+        public function setUserId($id) { \check($id === 1, 'callback trusted submitted customer ID'); }
         public function processResponse() {
             $GLOBALS['events'][] = 'process';
             if ($GLOBALS['scenario'] === 'exception') { throw new \RuntimeException('test exception'); }
@@ -94,7 +95,7 @@ namespace {
         });
     });
     try {
-        fn_amazon_payment_services_handle_response(strpos($scenario, 'return') !== false ? 'return' : 'notify', $scenario === 'invalid' ? 0 : 42, 'cc', 1, []);
+        fn_amazon_payment_services_handle_response(strpos($scenario, 'return') !== false ? 'return' : 'notify', $scenario === 'invalid' ? 0 : 42, 'cc', 999, []);
     } catch (\RuntimeException $e) {
         if ($scenario !== 'exception' || $e->getMessage() !== 'test exception') { throw $e; }
     }

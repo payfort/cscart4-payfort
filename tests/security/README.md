@@ -45,3 +45,27 @@ output. It does not erase historical logs, backups or copies in log aggregators.
 Before release, verify admin log viewing and all gateway debug modes in CS-Cart.
 Handle historical sensitive logs and credential exposure through the approved
 security/retention process; this code change does not remediate old copies.
+
+## c11114cd-d40b-446c-9163-58cdfd8b62b7
+
+Run `php tests/security/token_ownership.php`. The suite uses real Gateway, Cc and
+Installments classes, with database lookups and HTTP calls replaced by local
+doubles. Cross-customer, unknown, case-mismatched and malformed tokens, and guest
+saved-card usage, are rejected before signing a request or calling APS. Both
+`processRequest` and `tokenRequest` enforce ownership. Failed credit-card and
+installments actions do not execute HTTP calls. An empty token radio value still
+selects a new card, matching the shipped template.
+
+Fresh new-card tokenization is distinct from saved-card reuse: it requires a
+valid APS response signature, tokenization success code/status, the persisted
+order reference and matching merchant configuration. Existing token ownership
+must not conflict. It is validated before token saving or installment response
+hooks. Callback customer identity comes from the stored order, not request
+metadata. Guest and remember-me-off new-card flows remain possible.
+
+Before release, exercise real saved-card, guest/new-card, remember-me on/off,
+installments (including embedded), 3DS and repayment paths against APS sandbox.
+Verify APS tokenization callbacks carry the expected reference/configuration
+fields and that CS-Cart order details contain aps_reference. Cross-customer
+attempts must produce no outgoing charge request. No live charge or sandbox
+transaction was made during local testing.

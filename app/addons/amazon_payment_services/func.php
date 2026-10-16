@@ -298,7 +298,7 @@ function fn_amazon_payment_services_handle_locked_response($mode,$order_id,$gate
                   $gateway->setPaymentId((int)$order_info['payment_method']['payment_id']);
 
                // set user id and info
-               $gateway->setUserId($user_id);
+               $gateway->setUserId($order_info['user_id']);
                $gateway->setCustomerInfo([
                   'customer_ip' => $order_info['ip_address'],
                   'customer_email' => trim(strtolower($order_info['email'])),
